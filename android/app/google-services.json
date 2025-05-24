@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "746122598698",
+    "project_id": "autisticchildrenapp-b82bb",
+    "storage_bucket": "autisticchildrenapp-b82bb.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:746122598698:android:10ee2d93d8487465f42653",
+        "android_client_info": {
+          "package_name": "com.example.autisticchildren"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDL87-emCGw0Qqgj7NBvbydMnZEExD9PHU"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
