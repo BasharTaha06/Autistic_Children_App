@@ -3,6 +3,7 @@ import 'package:autisticchildren/parent/auth/logic/autho_state.dart';
 import 'package:autisticchildren/parent/auth/logic/parent_login_cubit.dart';
 import 'package:autisticchildren/parent/auth/screens/singin.dart';
 import 'package:autisticchildren/parent/auth/widget/inputField.dart';
+import 'package:autisticchildren/parent/home/screen/Home.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -111,7 +112,7 @@ class _SingupState extends State<Singup> {
                           Navigator.pushReplacement(
                             context,
                             MaterialPageRoute(
-                                builder: (context) => TestScreen()),
+                                builder: (context) => VideoScreen()),
                           );
                         } else if (state is AuthFailure) {
                           ScaffoldMessenger.of(context).showSnackBar(
