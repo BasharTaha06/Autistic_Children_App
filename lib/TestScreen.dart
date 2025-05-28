@@ -1,7 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:youtube_player_flutter/youtube_player_flutter.dart';
 
 class TestScreen extends StatefulWidget {
-  const TestScreen({super.key});
+  String VideoName;
+  YoutubePlayerController controller;
+  TestScreen({required this.controller, required this.VideoName});
 
   @override
   State<TestScreen> createState() => _TestScreenState();
@@ -13,8 +16,25 @@ class _TestScreenState extends State<TestScreen> {
     return Scaffold(
       backgroundColor: Colors.red,
       appBar: AppBar(
-        title: Text('Hello lash'),
+        title: Text(widget.VideoName),
         centerTitle: true,
+      ),
+      body: Container(
+        child: ListView(
+          shrinkWrap: true,
+          children: [
+            YoutubePlayer(
+              controller: widget.controller,
+              showVideoProgressIndicator: true,
+              bottomActions: [
+                CurrentPosition(),
+                ProgressBar(isExpanded: true),
+                PlaybackSpeedButton(),
+                FullScreenButton(),
+              ],
+            ),
+          ],
+        ),
       ),
     );
   }
