@@ -1,3 +1,4 @@
+import 'package:autisticchildren/Btns/btns.dart';
 import 'package:autisticchildren/TestScreen.dart';
 import 'package:autisticchildren/parent/auth/logic/parent_login_cubit.dart';
 import 'package:autisticchildren/parent/auth/screens/singin.dart';
@@ -31,7 +32,7 @@ class MyApp extends StatelessWidget {
     return Sizer(
       builder: (context, orientation, deviceType) {
         return MaterialApp(
-          home: (user != null) ? VideoScreen() : SingIn(),
+          home: (user != null) ? Btns() : SingIn(),
           debugShowCheckedModeBanner: false,
         );
       },
