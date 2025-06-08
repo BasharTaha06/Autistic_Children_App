@@ -71,7 +71,7 @@ class _CategoriesState extends State<Categories> {
                             ),
                           ),
                           SizedBox(
-                            height: 2.h,
+                            height: 1.h,
                           ),
                           Text(
                             data["cat-name"],
