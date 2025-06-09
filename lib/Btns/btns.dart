@@ -1,9 +1,12 @@
+import 'package:autisticchildren/Btns/Test3.dart';
 import 'package:autisticchildren/Btns/test1.dart';
 import 'package:autisticchildren/Btns/test2.dart';
 import 'package:autisticchildren/parent/categories/screens/categoreis.dart';
-import 'package:autisticchildren/parent/home/screen/Home.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
+// import 'package:autisticchildren/parent/home/screen/Home.dart';
 import 'package:convex_bottom_bar/convex_bottom_bar.dart';
 import 'package:fancy_bottom_navigation_plus/fancy_bottom_navigation_plus.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 
 class Btns extends StatefulWidget {
@@ -15,7 +18,49 @@ class Btns extends StatefulWidget {
 
 class _BtnsState extends State<Btns> {
   int currentPage = 0;
-  final List<Widget> pages = [VideoScreen(), Categories(), Test2()];
+  List<Widget> pages = [
+    Center(child: CircularProgressIndicator()),
+    Center(child: CircularProgressIndicator())
+  ];
+  User? updatedUser = FirebaseAuth.instance.currentUser;
+  @override
+  void initState() {
+    super.initState();
+    determineUserTypeAndSetPages();
+  }
+
+  Future<void> determineUserTypeAndSetPages() async {
+    User? currentUser = FirebaseAuth.instance.currentUser;
+
+    try {
+      // نحاول نلاقيه كطفل
+      final parentsSnapshot =
+          await FirebaseFirestore.instance.collection("parents").get();
+
+      for (var parentDoc in parentsSnapshot.docs) {
+        final childSnapshot = await parentDoc.reference
+            .collection("children")
+            .where("email", isEqualTo: currentUser?.email)
+            .get();
+
+        if (childSnapshot.docs.isNotEmpty) {
+          // لو لقي طفل
+          setState(() {
+            pages = [Categories(), Test2()];
+          });
+          return;
+        }
+      }
+
+      // لو ملقناهوش كطفل نعتبره بيرنت
+      setState(() {
+        pages = [Test1(), Test3()];
+      });
+    } catch (e) {
+      print("❌ خطأ في تحديد نوع المستخدم: $e");
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -27,7 +72,6 @@ class _BtnsState extends State<Btns> {
           items: [
             TabItem(icon: Icons.home, title: 'Home'),
             TabItem(icon: Icons.view_list, title: 'Categories'),
-            TabItem(icon: Icons.add, title: 'Add'),
           ],
           onTap: (i) {
             setState(() {

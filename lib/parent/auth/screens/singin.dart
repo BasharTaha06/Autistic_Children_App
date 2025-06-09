@@ -1,11 +1,11 @@
 import 'package:autisticchildren/TestScreen.dart';
-import 'package:autisticchildren/parent/auth/logic/autho_state.dart';
-import 'package:autisticchildren/parent/auth/logic/parent_login_cubit.dart';
-import 'package:autisticchildren/parent/auth/screens/resetPass.dart';
+import 'package:autisticchildren/parent/Login/logic/autho_state.dart';
+import 'package:autisticchildren/parent/Login/logic/parent_login_cubit.dart';
+import 'package:autisticchildren/parent/Login/resetPass.dart';
 import 'package:autisticchildren/parent/auth/screens/singin.dart';
 import 'package:autisticchildren/parent/auth/screens/singup.dart';
-import 'package:autisticchildren/parent/auth/widget/inputField.dart';
-import 'package:autisticchildren/parent/home/screen/Home.dart';
+import 'package:autisticchildren/parent/widget/inputField.dart';
+// import 'package:autisticchildren/parent/home/screen/Home.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -85,11 +85,11 @@ class _SingInState extends State<SingIn> {
                     child: BlocListener<ParentLoginCubit, ParentAthoState>(
                       listener: (context, state) {
                         if (state is ParentSuccessState) {
-                          Navigator.pushReplacement(
-                            context,
-                            MaterialPageRoute(
-                                builder: (context) => VideoScreen()),
-                          );
+                          // Navigator.pushReplacement(
+                          //   context,
+                          //   MaterialPageRoute(
+                          //       builder: (context) => VideoScreen()),
+                          // );
                         } else if (state is AuthFailure) {
                           ScaffoldMessenger.of(context).showSnackBar(
                             SnackBar(
@@ -196,7 +196,7 @@ class _SingInState extends State<SingIn> {
                         Navigator.push(
                             context,
                             MaterialPageRoute(
-                              builder: (context) => ResetPassword(),
+                              builder: (context) => ResetParentPassword(),
                             ))
                       },
                       child: Text(
