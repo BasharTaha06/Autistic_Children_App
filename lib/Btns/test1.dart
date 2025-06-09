@@ -9,7 +9,7 @@ class Test1 extends StatelessWidget {
       backgroundColor: Colors.red,
       body: Center(
         child: Text(
-          "this is test one ,",
+          "this is parent ,",
           style: TextStyle(fontSize: 35, color: Colors.white),
         ),
       ),

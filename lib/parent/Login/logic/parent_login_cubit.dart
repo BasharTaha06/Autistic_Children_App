@@ -1,6 +1,6 @@
 import 'dart:async';
 
-import 'package:autisticchildren/parent/auth/logic/autho_state.dart';
+import 'package:autisticchildren/parent/Login/logic/autho_state.dart';
 import 'package:autisticchildren/parent/model/parent_model.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
