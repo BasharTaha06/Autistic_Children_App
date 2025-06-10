@@ -7,12 +7,12 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:sizer/sizer.dart';
 
-class Test1 extends StatefulWidget {
+class Articales extends StatefulWidget {
   @override
-  State<Test1> createState() => _Test1State();
+  State<Articales> createState() => _ArticalesState();
 }
 
-class _Test1State extends State<Test1> {
+class _ArticalesState extends State<Articales> {
   String name = 'with us';
   User? user = FirebaseAuth.instance.currentUser;
   final List articels_Name = [
@@ -291,6 +291,15 @@ class _Test1State extends State<Test1> {
           },
         ),
       ),
+      floatingActionButton: FloatingActionButton(
+          backgroundColor: Colors.red,
+          child: Icon(
+            Icons.arrow_back_ios_sharp,
+            color: Colors.white,
+          ),
+          onPressed: () {
+            Navigator.pop(context);
+          }),
     );
   }
 }

@@ -8,6 +8,7 @@ import 'package:autisticchildren/parent/screens/parent-login.dart';
 import 'package:autisticchildren/parent/Logic/parent_login_cubit.dart';
 import 'package:autisticchildren/parent/auth/screens/singin.dart';
 import 'package:autisticchildren/parent/auth/screens/singup.dart';
+import 'package:autisticchildren/splachScreen/splachScreen.dart';
 // import 'package:autisticchildren/parent/home/screen/Home.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
@@ -41,10 +42,11 @@ class MyApp extends StatelessWidget {
     return Sizer(
       builder: (context, orientation, deviceType) {
         return MaterialApp(
-          home: (user != null) ? Btns() : ChooseTeypeOfLodding(),
+          // home: (user != null) ? Btns() : ChooseTeypeOfLodding(),
           // home: ChooseTeypeOfLodding(),
           // home: ChildSignIn(),
           // home: ResetParentPassword(),
+          home: SplachtPage(),
           debugShowCheckedModeBanner: false,
           routes: {
             "Parent-Log-in": (context) => ParentSingIn(),

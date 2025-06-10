@@ -1,3 +1,4 @@
+import 'package:autisticchildren/parent/home/home-feature.dart';
 import 'package:autisticchildren/parent/home/parentChildrenScreen.dart';
 import 'package:autisticchildren/parent/home/articelsPagescreen.dart';
 import 'package:autisticchildren/Btns/test2.dart';
@@ -56,7 +57,7 @@ class _BtnsState extends State<Btns> {
 
       // لو ملقناهوش كطفل نعتبره بيرنت
       setState(() {
-        pages = [Test1(), ChildrenScreen()];
+        pages = [HomeFeature(), ChildrenScreen()];
         parent = true;
       });
     } catch (e) {
