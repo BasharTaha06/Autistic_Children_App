@@ -1,6 +1,6 @@
 import 'package:autisticchildren/Btns/btns.dart';
-import 'package:autisticchildren/parent/Login/logic/child_logic/child_cubit.dart';
-import 'package:autisticchildren/parent/Login/logic/child_logic/child_state.dart';
+import 'package:autisticchildren/child/logic/child_cubit.dart';
+import 'package:autisticchildren/child/logic/child_state.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:sizer/sizer.dart';
@@ -19,6 +19,7 @@ class _ChildSignUpState extends State<ChildSignUp> {
   final TextEditingController parentEmail = TextEditingController();
 
   String gender = 'ذكر'; // القيمة الافتراضية
+  String level = 'الدرجه الاوله'; // القيمة الافتراضية
 
   @override
   Widget build(BuildContext context) {
@@ -79,6 +80,10 @@ class _ChildSignUpState extends State<ChildSignUp> {
                     data: age,
                     password: false,
                   ),
+                  Text(
+                    ': الجنس',
+                    style: TextStyle(fontSize: 16.sp),
+                  ),
 
                   /// 🔘 الجنس Radio Buttons
                   Row(
@@ -111,6 +116,69 @@ class _ChildSignUpState extends State<ChildSignUp> {
                             },
                           ),
                           Text("أنثى"),
+                        ],
+                      ),
+                    ],
+                  ),
+                  SizedBox(
+                    height: 2.h,
+                  ),
+                  Text(
+                    ': درجة شدة التوحد',
+                    style: TextStyle(fontSize: 16.sp),
+                  ),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      Row(
+                        children: [
+                          Radio<String>(
+                            value: 'الدرجه الاولي',
+                            groupValue: level,
+                            onChanged: (value) {
+                              setState(() {
+                                level = value!;
+                              });
+                            },
+                          ),
+                          Text('الاولي',
+                              style: TextStyle(fontWeight: FontWeight.bold)),
+                        ],
+                      ),
+                      SizedBox(
+                        width: 2.h,
+                      ),
+                      Row(
+                        children: [
+                          Radio<String>(
+                            value: 'الدرجه الثانيه',
+                            groupValue: level,
+                            onChanged: (value) {
+                              setState(() {
+                                level = value!;
+                              });
+                            },
+                          ),
+                          Text('الثانيه',
+                              style: TextStyle(fontWeight: FontWeight.bold)),
+                        ],
+                      ),
+                      SizedBox(
+                        width: 2.h,
+                      ),
+                      Row(
+                        children: [
+                          Radio<String>(
+                            value: 'الدرجه الثالثه',
+                            groupValue: level,
+                            onChanged: (value) {
+                              setState(() {
+                                level = value!;
+                              });
+                            },
+                          ),
+                          Text('الثالثه',
+                              style: TextStyle(fontWeight: FontWeight.bold)),
                         ],
                       ),
                     ],
@@ -177,6 +245,7 @@ class _ChildSignUpState extends State<ChildSignUp> {
                                               name: name.text.trim(),
                                               age: age.text.trim(),
                                               gender: gender.trim(),
+                                              level: level.trim(),
                                               parentEmail:
                                                   parentEmail.text.trim(),
                                             );
@@ -217,9 +286,9 @@ class _ChildSignUpState extends State<ChildSignUp> {
                               Text(
                                 'يرجى تأكيد الحساب عبر البريد لإتمام التسجيل',
                                 style: TextStyle(
-                                  color: Colors.white,
-                                  fontSize: 12.sp,
-                                  fontWeight: FontWeight.w500,
+                                  color: Colors.black,
+                                  fontSize: 16.sp,
+                                  fontWeight: FontWeight.bold,
                                 ),
                               ),
                             ],

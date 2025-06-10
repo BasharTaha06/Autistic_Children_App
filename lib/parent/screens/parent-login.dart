@@ -1,24 +1,25 @@
 import 'package:autisticchildren/Btns/btns.dart';
-import 'package:autisticchildren/parent/Login/screens/parent-login.dart';
-import 'package:autisticchildren/parent/Login/logic/autho_state.dart';
-import 'package:autisticchildren/parent/Login/logic/parent_login_cubit.dart';
+import 'package:autisticchildren/TestScreen.dart';
+import 'package:autisticchildren/parent/screens/parent-sing-up.dart';
+import 'package:autisticchildren/parent/Logic/autho_state.dart';
+import 'package:autisticchildren/parent/Logic/parent_login_cubit.dart';
+import 'package:autisticchildren/parent/screens/resetPass.dart';
 import 'package:autisticchildren/parent/auth/screens/singin.dart';
-import 'package:autisticchildren/parent/widget/inputField.dart';
+import 'package:autisticchildren/parent/auth/screens/singup.dart';
+import 'package:autisticchildren/widget/inputField.dart';
+// import 'package:autisticchildren/parent/home/screen/Home.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:sizer/sizer.dart';
 
-class ParentSingUp extends StatefulWidget {
-  const ParentSingUp({super.key});
-
+class ParentSingIn extends StatefulWidget {
   @override
-  State<ParentSingUp> createState() => _ParentParentSingUp();
+  State<ParentSingIn> createState() => _ParentSingInState();
 }
 
-class _ParentParentSingUp extends State<ParentSingUp> {
-  TextEditingController name = TextEditingController();
+class _ParentSingInState extends State<ParentSingIn> {
   TextEditingController email = TextEditingController();
-  TextEditingController phone = TextEditingController();
   TextEditingController pass = TextEditingController();
 
   @override
@@ -27,7 +28,7 @@ class _ParentParentSingUp extends State<ParentSingUp> {
       body: Stack(
         children: [
           Image.asset(
-            'assets/images/parents-autho.jpg', // نفس الخلفية الخاصة باللوجين
+            'assets/images/parents-autho.jpg',
             width: 100.w,
             height: 100.h,
             fit: BoxFit.fill,
@@ -63,37 +64,49 @@ class _ParentParentSingUp extends State<ParentSingUp> {
                   Text(
                     "أهلا بك",
                     style: TextStyle(
+                      // color: Colors.white,
                       fontSize: 25.sp,
                       fontWeight: FontWeight.bold,
                     ),
                   ),
+                  // SizedBox(height: 1.h),
                   UserInput(
-                    fieldName: 'اسم المستخدم',
-                    numbers: false,
-                    icon: Icons.person,
-                    data: name,
-                    password: false,
-                  ),
-                  UserInput(
-                    fieldName: 'البريد الإلكتروني',
+                    fieldName: 'البريد الالكتروني',
                     numbers: false,
                     icon: Icons.email,
                     data: email,
                     password: false,
                   ),
-                  UserInput(
-                    fieldName: 'رقم الهاتف',
-                    numbers: true,
-                    icon: Icons.phone,
-                    data: phone,
-                    password: false,
-                  ),
+                  // SizedBox(height: 2.h),
                   UserInput(
                     fieldName: 'كلمة السر',
                     numbers: false,
                     icon: Icons.lock,
                     data: pass,
                     password: true,
+                  ),
+                  // SizedBox(height: 2.h),
+                  Align(
+                    alignment: Alignment.centerLeft,
+                    child: GestureDetector(
+                      onTap: () {
+                        Navigator.pushReplacement(
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) => ResetParentPassword(),
+                          ),
+                        );
+                      },
+                      child: Text(
+                        "نسيت كلمة المرور؟",
+                        style: TextStyle(
+                          color: Colors.white,
+                          fontSize: 16.sp,
+                          fontWeight: FontWeight.bold,
+                          decoration: TextDecoration.underline,
+                        ),
+                      ),
+                    ),
                   ),
                   SizedBox(height: 5.h),
                   BlocListener<ParentLoginCubit, ParentAthoState>(
@@ -117,34 +130,12 @@ class _ParentParentSingUp extends State<ParentSingUp> {
                         if (state is ParentLodingState) {
                           return CircularProgressIndicator(color: Colors.white);
                         }
-
-                        if (state is ParentWaitingForVerificationState) {
-                          context
-                              .read<ParentLoginCubit>()
-                              .checkEmailVerified(state.user);
-                          return Column(
-                            children: [
-                              CircularProgressIndicator(color: Colors.white),
-                              SizedBox(height: 2.h),
-                              Text(
-                                "تم إرسال رابط التفعيل، نتحقق من التفعيل الآن...",
-                                style: TextStyle(color: Colors.white),
-                              ),
-                            ],
-                          );
-                        }
-
                         return ElevatedButton(
                           onPressed: () {
-                            if (name.text.isNotEmpty &&
-                                email.text.isNotEmpty &&
-                                phone.text.isNotEmpty &&
-                                pass.text.isNotEmpty) {
-                              context.read<ParentLoginCubit>().singUp(
+                            if (email.text.isNotEmpty && pass.text.isNotEmpty) {
+                              context.read<ParentLoginCubit>().singIn(
                                     email: email.text,
                                     pass: pass.text,
-                                    phone: phone.text,
-                                    name: name.text,
                                   );
                             } else {
                               ScaffoldMessenger.of(context).showSnackBar(
@@ -166,7 +157,7 @@ class _ParentParentSingUp extends State<ParentSingUp> {
                             ),
                           ),
                           child: Text(
-                            'إنشاء حساب',
+                            'تسجيل دخول',
                             style: TextStyle(
                               fontSize: 16.sp,
                               color: Colors.black,
@@ -183,12 +174,12 @@ class _ParentParentSingUp extends State<ParentSingUp> {
                       Navigator.pushReplacement(
                         context,
                         MaterialPageRoute(
-                          builder: (context) => ParentSingIn(),
+                          builder: (context) => ParentSingUp(),
                         ),
                       );
                     },
                     child: Text(
-                      "لدي حساب بالفعل!",
+                      "أريد إنشاء حساب!",
                       style: TextStyle(
                         color: Colors.blue,
                         fontSize: 18.sp,

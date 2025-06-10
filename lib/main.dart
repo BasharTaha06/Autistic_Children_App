@@ -1,11 +1,11 @@
 import 'package:autisticchildren/Btns/btns.dart';
 import 'package:autisticchildren/TestScreen.dart';
-import 'package:autisticchildren/parent/Login/logic/child_logic/child_cubit.dart';
-import 'package:autisticchildren/parent/Login/resetPass.dart';
-import 'package:autisticchildren/parent/Login/screens/child_sing_in.dart';
-import 'package:autisticchildren/parent/Login/screens/login_type.dart';
-import 'package:autisticchildren/parent/Login/screens/parent-login.dart';
-import 'package:autisticchildren/parent/Login/logic/parent_login_cubit.dart';
+import 'package:autisticchildren/child/logic/child_cubit.dart';
+import 'package:autisticchildren/parent/screens/resetPass.dart';
+import 'package:autisticchildren/child/screens/child_sing_in.dart';
+import 'package:autisticchildren/login_type.dart';
+import 'package:autisticchildren/parent/screens/parent-login.dart';
+import 'package:autisticchildren/parent/Logic/parent_login_cubit.dart';
 import 'package:autisticchildren/parent/auth/screens/singin.dart';
 import 'package:autisticchildren/parent/auth/screens/singup.dart';
 // import 'package:autisticchildren/parent/home/screen/Home.dart';

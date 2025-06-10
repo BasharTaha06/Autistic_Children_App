@@ -1,6 +1,7 @@
 import 'dart:async';
 
-import 'package:autisticchildren/parent/Login/logic/autho_state.dart';
+import 'package:autisticchildren/parent/Logic/autho_state.dart';
+import 'package:autisticchildren/child/model/child_model.dart';
 import 'package:autisticchildren/parent/model/parent_model.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
@@ -120,5 +121,26 @@ class ParentLoginCubit extends Cubit<ParentAthoState> {
         emit(ParentSuccessState());
       }
     });
+  }
+
+//   Future<List<Child>> getChildrenOfParent(String parentID) async {
+//     final snapshot = await FirebaseFirestore.instance
+//         .collection("parents")
+//         .doc(parentID)
+//         .collection("children")
+//         .get();
+// // emit(ParentChildrenLoadedState(childrenList));
+
+//     return snapshot.docs.map((doc) => Child.fromMap(doc.data())).toList();
+//   }
+  Future<void> getChildrenOfParent(String parentID) async {
+    final snapshot = await FirebaseFirestore.instance
+        .collection("parents")
+        .doc(parentID)
+        .collection("children")
+        .get();
+    final childrenList =
+        snapshot.docs.map((doc) => Child.fromMap(doc.data())).toList();
+    emit(ParentChildrenLoadedState(childrenList));
   }
 }

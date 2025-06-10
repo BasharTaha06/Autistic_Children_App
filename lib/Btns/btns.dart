@@ -1,7 +1,7 @@
-import 'package:autisticchildren/Btns/Test3.dart';
-import 'package:autisticchildren/Btns/test1.dart';
+import 'package:autisticchildren/parent/home/parentChildrenScreen.dart';
+import 'package:autisticchildren/parent/home/articelsPagescreen.dart';
 import 'package:autisticchildren/Btns/test2.dart';
-import 'package:autisticchildren/parent/categories/screens/categoreis.dart';
+import 'package:autisticchildren/child/categories/screens/categoreis.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 // import 'package:autisticchildren/parent/home/screen/Home.dart';
 import 'package:convex_bottom_bar/convex_bottom_bar.dart';
@@ -29,6 +29,7 @@ class _BtnsState extends State<Btns> {
     determineUserTypeAndSetPages();
   }
 
+  bool parent = true;
   Future<void> determineUserTypeAndSetPages() async {
     User? currentUser = FirebaseAuth.instance.currentUser;
 
@@ -47,6 +48,7 @@ class _BtnsState extends State<Btns> {
           // لو لقي طفل
           setState(() {
             pages = [Categories(), Test2()];
+            parent = false;
           });
           return;
         }
@@ -54,7 +56,8 @@ class _BtnsState extends State<Btns> {
 
       // لو ملقناهوش كطفل نعتبره بيرنت
       setState(() {
-        pages = [Test1(), Test3()];
+        pages = [Test1(), ChildrenScreen()];
+        parent = true;
       });
     } catch (e) {
       print("❌ خطأ في تحديد نوع المستخدم: $e");
@@ -69,9 +72,12 @@ class _BtnsState extends State<Btns> {
           children: pages,
         ),
         bottomNavigationBar: ConvexAppBar(
+          backgroundColor: Colors.red,
           items: [
             TabItem(icon: Icons.home, title: 'Home'),
-            TabItem(icon: Icons.view_list, title: 'Categories'),
+            TabItem(
+                icon: Icons.view_list,
+                title: parent ? "Children" : 'Categories'),
           ],
           onTap: (i) {
             setState(() {

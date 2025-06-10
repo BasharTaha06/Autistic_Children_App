@@ -1,7 +1,7 @@
 import 'dart:async';
-import 'package:autisticchildren/parent/Login/logic/child_logic/child_state.dart';
-import 'package:autisticchildren/parent/Login/screens/login_type.dart';
-import 'package:autisticchildren/parent/model/child_model.dart';
+import 'package:autisticchildren/child/logic/child_state.dart';
+import 'package:autisticchildren/login_type.dart';
+import 'package:autisticchildren/child/model/child_model.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
@@ -41,6 +41,7 @@ class ChildAuthCubit extends Cubit<ChildAuthState> {
     required String age,
     required String gender,
     required String parentEmail,
+    required String level,
   }) async {
     emit(ChildLoadingState());
     try {
@@ -77,6 +78,7 @@ class ChildAuthCubit extends Cubit<ChildAuthState> {
           succes: 0,
           fail: 0,
           TotalTry: 0,
+          level: level,
         );
 
         await FirebaseFirestore.instance

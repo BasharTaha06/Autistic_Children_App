@@ -1,23 +1,22 @@
 import 'package:autisticchildren/TestScreen.dart';
-import 'package:autisticchildren/parent/Login/logic/autho_state.dart';
-import 'package:autisticchildren/parent/Login/logic/child_logic/child_cubit.dart';
-import 'package:autisticchildren/parent/Login/logic/parent_login_cubit.dart';
+import 'package:autisticchildren/parent/Logic/autho_state.dart';
+import 'package:autisticchildren/parent/Logic/parent_login_cubit.dart';
 import 'package:autisticchildren/parent/auth/screens/singin.dart';
-import 'package:autisticchildren/parent/widget/inputField.dart';
+import 'package:autisticchildren/widget/inputField.dart';
 // import 'package:autisticchildren/parent/home/screen/Home.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:sizer/sizer.dart';
 
-class ResetChildPassword extends StatefulWidget {
-  const ResetChildPassword({super.key});
+class ResetParentPassword extends StatefulWidget {
+  const ResetParentPassword({super.key});
 
   @override
-  State<ResetChildPassword> createState() => _ResetChildPasswordState();
+  State<ResetParentPassword> createState() => _ResetParentPasswordState();
 }
 
-class _ResetChildPasswordState extends State<ResetChildPassword> {
+class _ResetParentPasswordState extends State<ResetParentPassword> {
   TextEditingController email = TextEditingController();
 
   @override
@@ -102,7 +101,7 @@ class _ResetChildPasswordState extends State<ResetChildPassword> {
                       return GestureDetector(
                         onTap: () {
                           if (!(email.text.isEmpty)) {
-                            context.read<ChildAuthCubit>().resetPassword(
+                            context.read<ParentLoginCubit>().resetPassword(
                                   email: email.text,
                                 );
                             ScaffoldMessenger.of(context).showSnackBar(
