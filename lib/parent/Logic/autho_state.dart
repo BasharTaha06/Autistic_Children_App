@@ -1,3 +1,4 @@
+import 'package:autisticchildren/child/model/child_model.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 
 abstract class ParentAthoState {}
@@ -18,4 +19,9 @@ class AuthFailure extends ParentAthoState {
 class ParentWaitingForVerificationState extends ParentAthoState {
   final User user;
   ParentWaitingForVerificationState(this.user);
+}
+
+class ParentChildrenLoadedState extends ParentAthoState {
+  final List<Child> children;
+  ParentChildrenLoadedState(this.children);
 }

@@ -5,8 +5,9 @@ class Child {
   String email;
   String Parentemail;
   int succes;
-  int fail = 0;
-  int TotalTry = 0;
+  int fail;
+  int TotalTry;
+  String level;
 
   Child({
     required this.name,
@@ -17,6 +18,7 @@ class Child {
     this.succes = 0,
     this.fail = 0,
     this.TotalTry = 0,
+    this.level = 'الدرجه الاوله',
   });
 
   // make the mode --> map --> to be able to store it
@@ -30,6 +32,7 @@ class Child {
       'succes': succes,
       'fail': fail,
       'TotalTry': TotalTry,
+      'level': level,
     };
   }
 
@@ -44,6 +47,7 @@ class Child {
       succes: map['succes'] ?? 0,
       fail: map['fail'] ?? 0,
       TotalTry: map['TotalTry'] ?? 0,
+      level: map['level'] ?? 'الدرجه الاوله',
     );
   }
 }

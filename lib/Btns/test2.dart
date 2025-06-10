@@ -1,5 +1,5 @@
-import 'package:autisticchildren/parent/Login/logic/child_logic/child_cubit.dart';
-import 'package:autisticchildren/parent/Login/screens/login_type.dart';
+import 'package:autisticchildren/child/logic/child_cubit.dart';
+import 'package:autisticchildren/login_type.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 

@@ -1,24 +1,19 @@
 import 'package:autisticchildren/Btns/btns.dart';
-import 'package:autisticchildren/TestScreen.dart';
-import 'package:autisticchildren/parent/Login/screens/parent-sing-up.dart';
-import 'package:autisticchildren/parent/Login/logic/autho_state.dart';
-import 'package:autisticchildren/parent/Login/logic/parent_login_cubit.dart';
-import 'package:autisticchildren/parent/Login/resetPass.dart';
-import 'package:autisticchildren/parent/auth/screens/singin.dart';
-import 'package:autisticchildren/parent/auth/screens/singup.dart';
-import 'package:autisticchildren/parent/widget/inputField.dart';
-// import 'package:autisticchildren/parent/home/screen/Home.dart';
+import 'package:autisticchildren/child/logic/child_cubit.dart';
+import 'package:autisticchildren/child/logic/child_state.dart';
+import 'package:autisticchildren/child/screens/child-reset-pass.dart';
+import 'package:autisticchildren/child/screens/child_sing_up.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:sizer/sizer.dart';
+import '../../widget/inputField.dart';
 
-class ParentSingIn extends StatefulWidget {
+class ChildSignIn extends StatefulWidget {
   @override
-  State<ParentSingIn> createState() => _ParentSingInState();
+  State<ChildSignIn> createState() => _ChildSignInState();
 }
 
-class _ParentSingInState extends State<ParentSingIn> {
+class _ChildSignInState extends State<ChildSignIn> {
   TextEditingController email = TextEditingController();
   TextEditingController pass = TextEditingController();
 
@@ -28,10 +23,10 @@ class _ParentSingInState extends State<ParentSingIn> {
       body: Stack(
         children: [
           Image.asset(
-            'assets/images/parents-autho.jpg',
+            'assets/images/loginbg.webp', // خلفية مختلفة للطفل لو تحب
             width: 100.w,
             height: 100.h,
-            fit: BoxFit.fill,
+            fit: BoxFit.cover,
           ),
           SingleChildScrollView(
             child: Padding(
@@ -39,7 +34,6 @@ class _ParentSingInState extends State<ParentSingIn> {
               child: Column(
                 children: [
                   SizedBox(height: 8.h),
-                  // Logo
                   Container(
                     alignment: Alignment.center,
                     height: 20.h,
@@ -62,14 +56,12 @@ class _ParentSingInState extends State<ParentSingIn> {
                   ),
                   SizedBox(height: 3.h),
                   Text(
-                    "أهلا بك",
+                    "مرحبًا بك يا صغيري 👋",
                     style: TextStyle(
-                      // color: Colors.white,
-                      fontSize: 25.sp,
+                      fontSize: 23.sp,
                       fontWeight: FontWeight.bold,
                     ),
                   ),
-                  // SizedBox(height: 1.h),
                   UserInput(
                     fieldName: 'البريد الالكتروني',
                     numbers: false,
@@ -77,7 +69,6 @@ class _ParentSingInState extends State<ParentSingIn> {
                     data: email,
                     password: false,
                   ),
-                  // SizedBox(height: 2.h),
                   UserInput(
                     fieldName: 'كلمة السر',
                     numbers: false,
@@ -85,7 +76,6 @@ class _ParentSingInState extends State<ParentSingIn> {
                     data: pass,
                     password: true,
                   ),
-                  // SizedBox(height: 2.h),
                   Align(
                     alignment: Alignment.centerLeft,
                     child: GestureDetector(
@@ -93,14 +83,13 @@ class _ParentSingInState extends State<ParentSingIn> {
                         Navigator.push(
                           context,
                           MaterialPageRoute(
-                            builder: (context) => ResetParentPassword(),
-                          ),
+                              builder: (context) => ResetChildPassword()),
                         );
                       },
                       child: Text(
                         "نسيت كلمة المرور؟",
                         style: TextStyle(
-                          color: Colors.white,
+                          color: Colors.black,
                           fontSize: 16.sp,
                           fontWeight: FontWeight.bold,
                           decoration: TextDecoration.underline,
@@ -108,15 +97,15 @@ class _ParentSingInState extends State<ParentSingIn> {
                       ),
                     ),
                   ),
-                  SizedBox(height: 5.h),
-                  BlocListener<ParentLoginCubit, ParentAthoState>(
+                  SizedBox(height: 2.h),
+                  BlocListener<ChildAuthCubit, ChildAuthState>(
                     listener: (context, state) {
-                      if (state is ParentSuccessState) {
+                      if (state is ChildSuccessState) {
                         Navigator.pushReplacement(
                           context,
                           MaterialPageRoute(builder: (context) => Btns()),
                         );
-                      } else if (state is AuthFailure) {
+                      } else if (state is ChildAuthFailure) {
                         ScaffoldMessenger.of(context).showSnackBar(
                           SnackBar(
                             content: Text(state.error),
@@ -125,22 +114,22 @@ class _ParentSingInState extends State<ParentSingIn> {
                         );
                       }
                     },
-                    child: BlocBuilder<ParentLoginCubit, ParentAthoState>(
+                    child: BlocBuilder<ChildAuthCubit, ChildAuthState>(
                       builder: (context, state) {
-                        if (state is ParentLodingState) {
+                        if (state is ChildLoadingState) {
                           return CircularProgressIndicator(color: Colors.white);
                         }
                         return ElevatedButton(
                           onPressed: () {
                             if (email.text.isNotEmpty && pass.text.isNotEmpty) {
-                              context.read<ParentLoginCubit>().singIn(
-                                    email: email.text,
-                                    pass: pass.text,
+                              context.read<ChildAuthCubit>().signIn(
+                                    email: email.text.trim(),
+                                    password: pass.text.trim(),
                                   );
                             } else {
                               ScaffoldMessenger.of(context).showSnackBar(
                                 SnackBar(
-                                  content: Text('الرجاء ملئ جميع الحقول'),
+                                  content: Text('يرجى ملء جميع الحقول'),
                                   backgroundColor: Colors.orange,
                                 ),
                               );
@@ -157,7 +146,7 @@ class _ParentSingInState extends State<ParentSingIn> {
                             ),
                           ),
                           child: Text(
-                            'تسجيل دخول',
+                            'تسجيل دخول الطفل',
                             style: TextStyle(
                               fontSize: 16.sp,
                               color: Colors.black,
@@ -169,25 +158,20 @@ class _ParentSingInState extends State<ParentSingIn> {
                     ),
                   ),
                   SizedBox(height: 3.h),
-                  GestureDetector(
-                    onTap: () {
-                      Navigator.pushReplacement(
-                        context,
-                        MaterialPageRoute(
-                          builder: (context) => ParentSingUp(),
-                        ),
-                      );
-                    },
-                    child: Text(
-                      "أريد إنشاء حساب!",
-                      style: TextStyle(
-                        color: Colors.blue,
-                        fontSize: 18.sp,
-                        fontWeight: FontWeight.bold,
-                      ),
-                    ),
-                  ),
-                  SizedBox(height: 5.h),
+                  TextButton(
+                      onPressed: () {
+                        Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                                builder: (context) => ChildSignUp()));
+                      },
+                      child: Text(
+                        'انشاء حساب للطفل ',
+                        style: TextStyle(
+                            color: Colors.black,
+                            fontWeight: FontWeight.bold,
+                            fontSize: 16.sp),
+                      ))
                 ],
               ),
             ),

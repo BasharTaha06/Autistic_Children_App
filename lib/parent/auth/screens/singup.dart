@@ -1,9 +1,9 @@
 import 'package:autisticchildren/Btns/btns.dart';
 import 'package:autisticchildren/TestScreen.dart';
-import 'package:autisticchildren/parent/Login/logic/autho_state.dart';
-import 'package:autisticchildren/parent/Login/logic/parent_login_cubit.dart';
+import 'package:autisticchildren/parent/Logic/autho_state.dart';
+import 'package:autisticchildren/parent/Logic/parent_login_cubit.dart';
 import 'package:autisticchildren/parent/auth/screens/singin.dart';
-import 'package:autisticchildren/parent/widget/inputField.dart';
+import 'package:autisticchildren/widget/inputField.dart';
 // import 'package:autisticchildren/parent/home/screen/Home.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
