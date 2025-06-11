@@ -1,5 +1,6 @@
 import 'package:autisticchildren/child/Face/ReactionSelectionScreen.dart';
 import 'package:autisticchildren/child/logic/child_cubit.dart';
+import 'package:autisticchildren/child/screens/BreathingApp.dart';
 import 'package:autisticchildren/login_type.dart';
 import 'package:autisticchildren/parent/home/imergance.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
@@ -13,28 +14,39 @@ class Categories extends StatefulWidget {
     {
       "cat-name": "الوجوه",
       "cat-img": "assets/images/smil.png",
-      "cat-nave": "Facespage", //still not add it will be an widget ( page  )
+      "cat-nave": "Facespage",
     },
     {
       "cat-name": "الصوت",
       "cat-img": "assets/images/voic.jpg",
-      "cat-nave": "Viocepage", //still not add it will be an widget ( page  )
+      "cat-nave": "Viocepage",
     },
     {
       "cat-name": "اختبار",
       "cat-img": "assets/images/quizes.webp",
-      "cat-nave": "Quizespage", //still not add it will be an widget ( page  )
+      "cat-nave": "Quizespage",
+    },
+    {
+      "cat-name": "فعاليات",
+      "cat-img": "assets/images/video3.jpg",
+      "cat-nave": "Quizespage",
     }
   ];
+  List<Widget> pages = [
+    ReactionSelectionScreen(),
+    ReactionSelectionScreen(),
+    ReactionSelectionScreen(),
+    BreathingExerciseScreen()
+  ];
+
   @override
   State<Categories> createState() => _CategoriesState();
 }
 
 class _CategoriesState extends State<Categories> {
-  // String name = 'with us';
   User? user = FirebaseAuth.instance.currentUser;
 
-  String childName = "  ";
+  String childName = "غير معروف";
   String parentEmail = "بلا بريد";
 
   @override
@@ -58,7 +70,6 @@ class _CategoriesState extends State<Categories> {
           for (var childDoc in childrenSnapshot.docs) {
             final data = childDoc.data();
             if (data['email'] == email) {
-              // لقينا الطفل اللي سجل الدخول
               setState(() {
                 childName = data['name'] ?? "غير معروف";
                 parentEmail = parentDoc['email'] ?? "بلا بريد";
@@ -83,19 +94,33 @@ class _CategoriesState extends State<Categories> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Colors.grey[100],
       appBar: AppBar(
+        elevation: 0,
+        // backgroundColor: const Color.fromARGB(255, 255, 139, 62),
+        centerTitle: true,
+        // iconTheme: IconThemeData(color: Colors.white),
         title: Row(
+          mainAxisSize: MainAxisSize.min,
+          crossAxisAlignment: CrossAxisAlignment.center,
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             Text(
-              "Welcome, ",
-              style: TextStyle(fontSize: 15.sp, color: Colors.red),
+              "$childName",
+              style: TextStyle(
+                  fontSize: 20.sp,
+                  fontWeight: FontWeight.bold,
+                  color: const Color.fromARGB(255, 0, 0, 0)),
             ),
             SizedBox(
-              width: 1.w,
+              width: 2.w,
             ),
             Text(
-              "$childName",
+              "أهلاً، ",
+              style: TextStyle(
+                  fontSize: 15.sp,
+                  color: Colors.red,
+                  fontWeight: FontWeight.w500),
             ),
           ],
         ),
@@ -119,102 +144,89 @@ class _CategoriesState extends State<Categories> {
                   )
                 ],
               ),
-              child: Image.asset(
-                'assets/images/APP-LOGO.png',
-                //fit: BoxFit.contain,
-              ),
+              child: Image.asset('assets/images/APP-LOGO.png'),
             ),
             SizedBox(height: 3.h),
-            Padding(
-              padding: const EdgeInsets.only(right: 20, left: 20),
-              child: InkWell(
-                onTap: () {
-                  context.read<ChildAuthCubit>().signOut();
-                  Navigator.pushReplacement(
-                    context,
-                    MaterialPageRoute(builder: (_) => ChooseTeypeOfLodding()),
-                  );
-                },
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    Text("تسجيل الخروج"),
-                    IconButton(
-                        onPressed: () {}, icon: Icon(Icons.logout_rounded))
-                  ],
-                ),
-              ),
+            ListTile(
+              trailing: Icon(Icons.logout_rounded),
+              title: Text("تسجيل الخروج"),
+              onTap: () {
+                context.read<ChildAuthCubit>().signOut();
+                Navigator.pushReplacement(
+                  context,
+                  MaterialPageRoute(builder: (_) => ChooseTeypeOfLodding()),
+                );
+              },
             ),
             Divider(),
-            SizedBox(height: 3.h),
-            Padding(
-              padding: const EdgeInsets.only(right: 20, left: 20),
-              child: InkWell(
-                onTap: () {
-                  Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                          builder: (context) => ImerganceDesplay()));
-                },
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    Text("الطوارئ "),
-                    IconButton(
-                        onPressed: () {}, icon: Icon(Icons.tips_and_updates))
-                  ],
-                ),
-              ),
+            ListTile(
+              trailing: Icon(Icons.tips_and_updates),
+              title: Text("الطوارئ"),
+              onTap: () {
+                Navigator.push(context,
+                    MaterialPageRoute(builder: (_) => ImerganceDesplay()));
+              },
             ),
-            Divider()
+            Divider(),
           ],
         ),
       ),
-      body: Container(
-        margin: EdgeInsets.symmetric(vertical: 5.h),
-        padding: EdgeInsets.all(3.w),
-        child: ListView(
-          // shrinkWrap: true,
+      body: Padding(
+        padding: EdgeInsets.symmetric(horizontal: 5.w, vertical: 3.h),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            Container(
-              height: 50.h,
+            Text(
+              "اختر فئة للتفاعل معها:",
+              style: TextStyle(fontSize: 18.sp, fontWeight: FontWeight.w600),
+            ),
+            SizedBox(height: 3.h),
+            Expanded(
               child: GridView.builder(
-                physics: NeverScrollableScrollPhysics(),
                 itemCount: widget.data.length,
                 gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                    crossAxisCount: 2,
-                    crossAxisSpacing: 2.w,
-                    mainAxisSpacing: 3.h),
-                itemBuilder: (BuildContext context, int index) {
+                  crossAxisCount: 2,
+                  crossAxisSpacing: 4.w,
+                  mainAxisSpacing: 3.h,
+                  childAspectRatio: 3 / 4,
+                ),
+                itemBuilder: (context, index) {
                   final data = widget.data[index];
                   return InkWell(
                     onTap: () {
                       Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                              builder: (context) => ReactionSelectionScreen()));
+                        context,
+                        MaterialPageRoute(
+                          builder: (_) => widget.pages[index],
+                        ),
+                      );
                     },
                     child: Card(
-                      elevation: 15,
+                      elevation: 10,
+                      shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(16)),
                       child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.center,
                         children: [
-                          Container(
-                            width: 300,
-                            child: Image(
-                              image: AssetImage(
+                          Expanded(
+                            child: ClipRRect(
+                              borderRadius: BorderRadius.vertical(
+                                  top: Radius.circular(16)),
+                              child: Image.asset(
                                 data["cat-img"],
+                                fit: BoxFit.fill,
+                                width: double.infinity,
                               ),
-                              fit: BoxFit.fill,
-                              height: 130,
                             ),
                           ),
-                          SizedBox(
-                            height: 1.h,
-                          ),
-                          Text(
-                            data["cat-name"],
-                            style: TextStyle(
-                                fontWeight: FontWeight.bold, fontSize: 20.sp),
+                          Padding(
+                            padding: EdgeInsets.all(1.h),
+                            child: Text(
+                              data["cat-name"],
+                              style: TextStyle(
+                                  fontWeight: FontWeight.bold, fontSize: 14.sp),
+                              textAlign: TextAlign.center,
+                            ),
                           ),
                         ],
                       ),
@@ -222,9 +234,6 @@ class _CategoriesState extends State<Categories> {
                   );
                 },
               ),
-            ),
-            SizedBox(
-              height: 5.h,
             ),
           ],
         ),

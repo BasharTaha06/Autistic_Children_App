@@ -1,5 +1,6 @@
 import 'package:autisticchildren/Btns/btns.dart';
 import 'package:autisticchildren/TestScreen.dart';
+import 'package:autisticchildren/child/categories/screens/categoreis.dart';
 import 'package:autisticchildren/child/logic/child_cubit.dart';
 import 'package:autisticchildren/parent/home/Desplay_doctor_detaild.dart';
 import 'package:autisticchildren/parent/screens/resetPass.dart';
@@ -43,6 +44,7 @@ class MyApp extends StatelessWidget {
     return Sizer(
       builder: (context, orientation, deviceType) {
         return MaterialApp(
+          // home: Categories(),
           home: SplachtPage(),
           debugShowCheckedModeBanner: false,
           routes: {

@@ -1,7 +1,7 @@
 import 'package:autisticchildren/parent/home/home-feature.dart';
 import 'package:autisticchildren/parent/home/parentChildrenScreen.dart';
 import 'package:autisticchildren/parent/home/articelsPagescreen.dart';
-import 'package:autisticchildren/Btns/test2.dart';
+import 'package:autisticchildren/Btns/chart.dart';
 import 'package:autisticchildren/child/categories/screens/categoreis.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 // import 'package:autisticchildren/parent/home/screen/Home.dart';
@@ -48,7 +48,7 @@ class _BtnsState extends State<Btns> {
         if (childSnapshot.docs.isNotEmpty) {
           // لو لقي طفل
           setState(() {
-            pages = [Categories(), Test2()];
+            pages = [Categories(), ChildProgressPage()];
             parent = false;
           });
           return;

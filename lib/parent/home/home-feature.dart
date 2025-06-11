@@ -1,5 +1,6 @@
 import 'package:autisticchildren/login_type.dart';
 import 'package:autisticchildren/parent/Logic/parent_login_cubit.dart';
+import 'package:autisticchildren/parent/home/addNewChild.dart';
 import 'package:autisticchildren/parent/home/articelsPagescreen.dart';
 import 'package:autisticchildren/parent/home/doctors_view.dart';
 import 'package:autisticchildren/parent/home/imergance.dart';
@@ -8,6 +9,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:sizer/sizer.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 class HomeFeature extends StatefulWidget {
   const HomeFeature({super.key});
@@ -46,6 +48,18 @@ class _HomeFeatureState extends State<HomeFeature> {
       }
     } else {
       print('No user is logged in');
+    }
+  }
+
+//function  to open the whats up group
+  void openWhatsAppGroup() async {
+    final Uri url =
+        Uri.parse('https://chat.whatsapp.com/JPzKyu8xJAkKcHSvQ5vans');
+
+    if (await canLaunchUrl(url)) {
+      await launchUrl(url, mode: LaunchMode.externalApplication);
+    } else {
+      print("Could not launch WhatsApp group link");
     }
   }
 
@@ -169,7 +183,7 @@ class _HomeFeatureState extends State<HomeFeature> {
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: const [
                           Text(
-                            "Article",
+                            "مقالات توعيه",
                             style: TextStyle(
                               fontSize: 18,
                               fontWeight: FontWeight.bold,
@@ -203,6 +217,125 @@ class _HomeFeatureState extends State<HomeFeature> {
             SizedBox(
               height: 2.h,
             ),
+
+            Row(
+              children: [
+                //start the group
+                Expanded(
+                  child: InkWell(
+                    onTap: openWhatsAppGroup,
+                    borderRadius: BorderRadius.circular(16),
+                    child: Card(
+                      elevation: 20,
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(16),
+                      ),
+                      shadowColor: Colors.black54,
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          // Title + Arrow Row
+                          Padding(
+                            padding: const EdgeInsets.symmetric(
+                                horizontal: 16, vertical: 12),
+                            child: Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                              children: const [
+                                Text(
+                                  "انضم الينا",
+                                  style: TextStyle(
+                                    fontSize: 18,
+                                    fontWeight: FontWeight.bold,
+                                  ),
+                                ),
+                                Icon(
+                                  Icons.arrow_forward_ios,
+                                  size: 18,
+                                  color: Colors.grey,
+                                ),
+                              ],
+                            ),
+                          ),
+                          // Image Section
+                          ClipRRect(
+                            borderRadius: const BorderRadius.vertical(
+                              bottom: Radius.circular(16),
+                            ),
+                            child: Image.asset(
+                              'assets/images/groupWhats.jpg', // غيّرها إلى رابط الصورة اللي تحب
+                              width: double.infinity,
+                              height: 10.h,
+                              fit: BoxFit.fill,
+                            ),
+                          ),
+                        ],
+                      ),
+                    ),
+                  ),
+                ),
+                //end the group
+                //start the ad child
+                Expanded(
+                  child: InkWell(
+                    onTap: () {
+                      Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                              builder: (context) => AddNewChild()));
+                    },
+                    borderRadius: BorderRadius.circular(16),
+                    child: Card(
+                      elevation: 20,
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(16),
+                      ),
+                      shadowColor: Colors.black54,
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          // Title + Arrow Row
+                          Padding(
+                            padding: const EdgeInsets.symmetric(
+                                horizontal: 16, vertical: 12),
+                            child: Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                              children: const [
+                                Text(
+                                  "اضف طفل",
+                                  style: TextStyle(
+                                    fontSize: 18,
+                                    fontWeight: FontWeight.bold,
+                                  ),
+                                ),
+                                Icon(
+                                  Icons.arrow_forward_ios,
+                                  size: 18,
+                                  color: Colors.grey,
+                                ),
+                              ],
+                            ),
+                          ),
+                          // Image Section
+                          ClipRRect(
+                            borderRadius: const BorderRadius.vertical(
+                              bottom: Radius.circular(16),
+                            ),
+                            child: Image.asset(
+                              'assets/images/AddChild.png',
+                              width: double.infinity,
+                              height: 10.h,
+                              fit: BoxFit.contain,
+                            ),
+                          ),
+                        ],
+                      ),
+                    ),
+                  ),
+                ),
+                //end the add child
+              ],
+            ),
+            SizedBox(height: 2.h),
             //start the doctors
             InkWell(
               onTap: () {
@@ -227,7 +360,7 @@ class _HomeFeatureState extends State<HomeFeature> {
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: const [
                           Text(
-                            "Doctors",
+                            "الاطباء",
                             style: TextStyle(
                               fontSize: 18,
                               fontWeight: FontWeight.bold,
