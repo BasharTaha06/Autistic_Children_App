@@ -13,12 +13,12 @@ class SplachtPage extends StatelessWidget {
     Future.delayed(
         Duration(seconds: 3),
         () => {
-              Navigator.pushReplacement(
-                context,
-                MaterialPageRoute(
-                    builder: (context) =>
-                        user == null ? ChooseTeypeOfLodding() : Btns()),
-              )
+              Navigator.pushAndRemoveUntil(
+                  context,
+                  MaterialPageRoute(
+                      builder: (context) =>
+                          user == null ? ChooseTeypeOfLodding() : Btns()),
+                  (route) => false)
             });
     return Scaffold(
       body: Center(
