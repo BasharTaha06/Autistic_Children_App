@@ -1,6 +1,8 @@
 import 'package:autisticchildren/login_type.dart';
 import 'package:autisticchildren/parent/Logic/parent_login_cubit.dart';
 import 'package:autisticchildren/parent/home/articelsPagescreen.dart';
+import 'package:autisticchildren/parent/home/doctors_view.dart';
+import 'package:autisticchildren/parent/home/imergance.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
@@ -95,20 +97,19 @@ class _HomeFeatureState extends State<HomeFeature> {
             Padding(
               padding: const EdgeInsets.only(right: 20, left: 20),
               child: InkWell(
+                onTap: () {
+                  context.read<ParentLoginCubit>().signOut();
+                  Navigator.pushReplacement(
+                    context,
+                    MaterialPageRoute(builder: (_) => ChooseTeypeOfLodding()),
+                  );
+                },
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
                     Text("تسجيل الخروج"),
                     IconButton(
-                        onPressed: () {
-                          context.read<ParentLoginCubit>().signOut();
-                          Navigator.pushReplacement(
-                            context,
-                            MaterialPageRoute(
-                                builder: (_) => ChooseTeypeOfLodding()),
-                          );
-                        },
-                        icon: Icon(Icons.logout_rounded))
+                        onPressed: () {}, icon: Icon(Icons.logout_rounded))
                   ],
                 ),
               ),
@@ -118,6 +119,12 @@ class _HomeFeatureState extends State<HomeFeature> {
             Padding(
               padding: const EdgeInsets.only(right: 20, left: 20),
               child: InkWell(
+                onTap: () {
+                  Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                          builder: (context) => ImerganceDesplay()));
+                },
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
@@ -138,6 +145,7 @@ class _HomeFeatureState extends State<HomeFeature> {
             SizedBox(
               height: 2.h,
             ),
+            //start the articels
             InkWell(
               onTap: () {
                 Navigator.push(context,
@@ -190,7 +198,66 @@ class _HomeFeatureState extends State<HomeFeature> {
                   ],
                 ),
               ),
-            )
+            ),
+            //end the articales
+            SizedBox(
+              height: 2.h,
+            ),
+            //start the doctors
+            InkWell(
+              onTap: () {
+                Navigator.push(context,
+                    MaterialPageRoute(builder: (context) => DoctorsList()));
+              },
+              borderRadius: BorderRadius.circular(16),
+              child: Card(
+                elevation: 20,
+                shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(16),
+                ),
+                shadowColor: Colors.black54,
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    // Title + Arrow Row
+                    Padding(
+                      padding: const EdgeInsets.symmetric(
+                          horizontal: 16, vertical: 12),
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: const [
+                          Text(
+                            "Doctors",
+                            style: TextStyle(
+                              fontSize: 18,
+                              fontWeight: FontWeight.bold,
+                            ),
+                          ),
+                          Icon(
+                            Icons.arrow_forward_ios,
+                            size: 18,
+                            color: Colors.grey,
+                          ),
+                        ],
+                      ),
+                    ),
+                    // Image Section
+                    ClipRRect(
+                      borderRadius: const BorderRadius.vertical(
+                        bottom: Radius.circular(16),
+                      ),
+                      child: Image.asset(
+                        'assets/images/doctors.jpg', // غيّرها إلى رابط الصورة اللي تحب
+                        width: double.infinity,
+                        height: 180,
+                        fit: BoxFit.cover,
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+            ),
+            //end the articales
           ],
         ),
       ),

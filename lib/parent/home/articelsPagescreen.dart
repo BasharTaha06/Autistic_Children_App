@@ -1,6 +1,7 @@
 import 'package:autisticchildren/parent/Logic/parent_login_cubit.dart';
 import 'package:autisticchildren/login_type.dart';
 import 'package:autisticchildren/parent/home/display_Articel.dart';
+import 'package:autisticchildren/parent/home/imergance.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
@@ -208,20 +209,19 @@ class _ArticalesState extends State<Articales> {
             Padding(
               padding: const EdgeInsets.only(right: 20, left: 20),
               child: InkWell(
+                onTap: () {
+                  context.read<ParentLoginCubit>().signOut();
+                  Navigator.pushReplacement(
+                    context,
+                    MaterialPageRoute(builder: (_) => ChooseTeypeOfLodding()),
+                  );
+                },
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
                     Text("تسجيل الخروج"),
                     IconButton(
-                        onPressed: () {
-                          context.read<ParentLoginCubit>().signOut();
-                          Navigator.pushReplacement(
-                            context,
-                            MaterialPageRoute(
-                                builder: (_) => ChooseTeypeOfLodding()),
-                          );
-                        },
-                        icon: Icon(Icons.logout_rounded))
+                        onPressed: () {}, icon: Icon(Icons.logout_rounded))
                   ],
                 ),
               ),
@@ -231,6 +231,12 @@ class _ArticalesState extends State<Articales> {
             Padding(
               padding: const EdgeInsets.only(right: 20, left: 20),
               child: InkWell(
+                onTap: () {
+                  Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                          builder: (context) => ImerganceDesplay()));
+                },
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [

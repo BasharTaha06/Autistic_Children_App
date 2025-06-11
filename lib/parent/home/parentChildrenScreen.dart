@@ -1,5 +1,6 @@
 import 'package:autisticchildren/parent/Logic/autho_state.dart';
 import 'package:autisticchildren/login_type.dart';
+import 'package:autisticchildren/parent/home/imergance.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:firebase_auth/firebase_auth.dart';
@@ -56,20 +57,19 @@ class _ChildrenScreenState extends State<ChildrenScreen> {
             Padding(
               padding: const EdgeInsets.only(right: 20, left: 20),
               child: InkWell(
+                onTap: () {
+                  context.read<ParentLoginCubit>().signOut();
+                  Navigator.pushReplacement(
+                    context,
+                    MaterialPageRoute(builder: (_) => ChooseTeypeOfLodding()),
+                  );
+                },
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
                     Text("تسجيل الخروج"),
                     IconButton(
-                        onPressed: () {
-                          context.read<ParentLoginCubit>().signOut();
-                          Navigator.pushReplacement(
-                            context,
-                            MaterialPageRoute(
-                                builder: (_) => ChooseTeypeOfLodding()),
-                          );
-                        },
-                        icon: Icon(Icons.logout_rounded))
+                        onPressed: () {}, icon: Icon(Icons.logout_rounded))
                   ],
                 ),
               ),
@@ -79,6 +79,12 @@ class _ChildrenScreenState extends State<ChildrenScreen> {
             Padding(
               padding: const EdgeInsets.only(right: 20, left: 20),
               child: InkWell(
+                onTap: () {
+                  Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                          builder: (context) => ImerganceDesplay()));
+                },
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [

@@ -1,6 +1,7 @@
 import 'package:autisticchildren/TestScreen.dart';
 import 'package:autisticchildren/parent/Logic/autho_state.dart';
 import 'package:autisticchildren/parent/Logic/parent_login_cubit.dart';
+import 'package:autisticchildren/parent/home/imergance.dart';
 import 'package:autisticchildren/parent/screens/resetPass.dart';
 import 'package:autisticchildren/parent/auth/screens/singup.dart';
 import 'package:autisticchildren/widget/inputField.dart';
@@ -110,6 +111,12 @@ class ChooseTeypeOfLodding extends StatelessWidget {
                   bottom: -7.h,
                   // left: 5.w,
                   child: GestureDetector(
+                    onTap: () {
+                      Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                              builder: (context) => ImerganceDesplay()));
+                    },
                     child: Container(
                       alignment: Alignment.center,
                       margin: EdgeInsets.only(top: 5.h, bottom: 10.h),

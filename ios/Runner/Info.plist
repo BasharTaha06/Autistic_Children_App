@@ -45,5 +45,17 @@
 	<true/>
 	<key>UIApplicationSupportsIndirectInputEvents</key>
 	<true/>
+
+	<!-- ✅ Permissions & Transport Security -->
+	<key>NSCameraUsageDescription</key>
+	<string>Need camera access to capture photos for emotion detection</string>
+	<key>NSMicrophoneUsageDescription</key>
+	<string>Need microphone access for video recording</string>
+	<key>NSAppTransportSecurity</key>
+	<dict>
+		<key>NSAllowsArbitraryLoads</key>
+		<true/>
+	</dict>
+
 </dict>
 </plist>
