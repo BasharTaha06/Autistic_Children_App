@@ -1,7 +1,7 @@
 import 'package:autisticchildren/parent/home/home-feature.dart';
 import 'package:autisticchildren/parent/home/parentChildrenScreen.dart';
 import 'package:autisticchildren/parent/home/articelsPagescreen.dart';
-import 'package:autisticchildren/Btns/chart.dart';
+import 'package:autisticchildren/child/screens/chart.dart';
 import 'package:autisticchildren/child/categories/screens/categoreis.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 // import 'package:autisticchildren/parent/home/screen/Home.dart';
@@ -77,8 +77,7 @@ class _BtnsState extends State<Btns> {
           items: [
             TabItem(icon: Icons.home, title: 'Home'),
             TabItem(
-                icon: Icons.view_list,
-                title: parent ? "Children" : 'Categories'),
+                icon: Icons.view_list, title: parent ? "Children" : 'Prograss'),
           ],
           onTap: (i) {
             setState(() {

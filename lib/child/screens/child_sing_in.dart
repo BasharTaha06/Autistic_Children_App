@@ -3,6 +3,7 @@ import 'package:autisticchildren/child/logic/child_cubit.dart';
 import 'package:autisticchildren/child/logic/child_state.dart';
 import 'package:autisticchildren/child/screens/child-reset-pass.dart';
 import 'package:autisticchildren/child/screens/child_sing_up.dart';
+import 'package:autisticchildren/login_type.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:sizer/sizer.dart';
@@ -177,6 +178,21 @@ class _ChildSignInState extends State<ChildSignIn> {
             ),
           ),
         ],
+      ),
+      floatingActionButton: FloatingActionButton(
+        backgroundColor: const Color.fromARGB(255, 76, 175, 145),
+        onPressed: () {
+          Navigator.pushAndRemoveUntil(
+              context,
+              MaterialPageRoute(
+                builder: (context) => ChooseTeypeOfLodding(),
+              ),
+              (route) => false);
+        },
+        child: Icon(
+          Icons.arrow_back_ios_sharp,
+          color: Colors.white,
+        ),
       ),
     );
   }

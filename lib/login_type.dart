@@ -1,143 +1,130 @@
-import 'package:autisticchildren/TestScreen.dart';
-import 'package:autisticchildren/parent/Logic/autho_state.dart';
-import 'package:autisticchildren/parent/Logic/parent_login_cubit.dart';
-import 'package:autisticchildren/parent/home/imergance.dart';
-import 'package:autisticchildren/parent/screens/resetPass.dart';
-import 'package:autisticchildren/parent/auth/screens/singup.dart';
-import 'package:autisticchildren/widget/inputField.dart';
-// import 'package:autisticchildren/parent/home/screen/Home.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:sizer/sizer.dart';
 
 class ChooseTeypeOfLodding extends StatelessWidget {
-  TextEditingController email = TextEditingController();
-
-  TextEditingController pass = TextEditingController();
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Container(
-        // padding: EdgeInsets.all(10),
-        child: Center(
-          child: SingleChildScrollView(
-            child: Stack(
-              children: [
-                Image(
-                  image: AssetImage(
-                    'assets/images/check.png',
-                  ),
-                  width: 100.w,
-                  height: 100.h,
-                  fit: BoxFit.fill,
+      backgroundColor: Colors.white,
+      body: Stack(
+        children: [
+          // خلفية ديكورية بسيطة بدلاً من الصورة الممتدة
+          Positioned.fill(
+            child: Container(
+              decoration: const BoxDecoration(
+                gradient: LinearGradient(
+                  colors: [
+                    Color.fromARGB(255, 253, 161, 138),
+                    Color.fromARGB(255, 252, 77, 77)
+                  ],
+                  begin: Alignment.topCenter,
+                  end: Alignment.bottomCenter,
                 ),
-                Positioned(
-                    top: 5.h,
-                    left: 25.w,
-                    child: Container(
-                      alignment: Alignment.center,
-                      height: 200,
-                      width: 200,
-                      decoration: BoxDecoration(
-                          color: Colors.white,
-                          borderRadius: BorderRadius.circular(100)),
-                      child: Image(
-                        image: AssetImage(
-                          'assets/images/APP-LOGO.png',
-                        ),
-                        width: 200,
-                        height: 200,
-                        fit: BoxFit.fill,
-                      ),
-                    )),
-                Positioned(
-                  top: 35.h,
-                  left: 5.w,
-                  child: GestureDetector(
-                    onTap: () {
-                      Navigator.pushNamed(context, "Parent-Log-in");
-                    },
-                    child: Container(
-                      alignment: Alignment.center,
-                      margin: EdgeInsets.only(top: 5.h, bottom: 10.h),
-                      width: 90.w,
-                      height: 8.h,
-                      decoration: BoxDecoration(
-                        color: const Color.fromARGB(255, 228, 176, 4),
-                        borderRadius: BorderRadius.circular(20),
-                      ),
-                      child: Text(
-                        'تسجيل ولي أمر',
-                        style: TextStyle(
-                            fontSize: 20.sp,
-                            fontWeight: FontWeight.w600,
-                            color: Colors.white),
-                      ),
-                    ),
-                  ),
-                ),
-                SizedBox(
-                  height: 5.h,
-                ),
-                Positioned(
-                  top: 47.h,
-                  left: 5.w,
-                  child: GestureDetector(
-                    onTap: () {
-                      Navigator.pushNamed(context, "Child-Log-in");
-                    },
-                    child: Container(
-                      alignment: Alignment.center,
-                      margin: EdgeInsets.only(top: 5.h, bottom: 10.h),
-                      width: 90.w,
-                      height: 8.h,
-                      decoration: BoxDecoration(
-                        color: const Color.fromARGB(255, 228, 176, 4),
-                        borderRadius: BorderRadius.circular(20),
-                      ),
-                      child: Text(
-                        'تسجيل الابن / الابنه',
-                        style: TextStyle(
-                            fontSize: 20.sp,
-                            fontWeight: FontWeight.w600,
-                            color: Colors.white),
-                      ),
-                    ),
-                  ),
-                ),
-                Positioned(
-                  bottom: -7.h,
-                  // left: 5.w,
-                  child: GestureDetector(
-                    onTap: () {
-                      Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                              builder: (context) => ImerganceDesplay()));
-                    },
-                    child: Container(
-                      alignment: Alignment.center,
-                      margin: EdgeInsets.only(top: 5.h, bottom: 10.h),
-                      width: 50.w,
-                      height: 8.h,
-                      decoration: BoxDecoration(
-                        color: const Color.fromARGB(255, 163, 8, 8),
-                        borderRadius: BorderRadius.circular(20),
-                      ),
-                      child: Text(
-                        'زر الطوارئ',
-                        style: TextStyle(
-                            fontSize: 20.sp,
-                            fontWeight: FontWeight.w600,
-                            color: Colors.white),
-                      ),
-                    ),
-                  ),
-                ),
-              ],
+              ),
             ),
+          ),
+
+          // المحتوى الأساسي
+          SafeArea(
+            child: Padding(
+              padding: EdgeInsets.symmetric(horizontal: 5.w),
+              child: Column(
+                children: [
+                  SizedBox(height: 5.h),
+                  Center(
+                    child: Container(
+                      height: 50.w,
+                      width: 50.w,
+                      decoration: BoxDecoration(
+                        color: Colors.white,
+                        shape: BoxShape.circle,
+                        boxShadow: [
+                          BoxShadow(
+                            color: Colors.black12,
+                            blurRadius: 10,
+                            offset: Offset(0, 4),
+                          ),
+                        ],
+                      ),
+                      child: Padding(
+                        padding: const EdgeInsets.all(8.0),
+                        child: Image.asset('assets/images/APP-LOGO.png'),
+                      ),
+                    ),
+                  ),
+                  SizedBox(height: 6.h),
+                  Text(
+                    'مرحباً بك 👋',
+                    style: TextStyle(
+                      fontSize: 22.sp,
+                      fontWeight: FontWeight.bold,
+                      color: Colors.white,
+                    ),
+                  ),
+                  Text(
+                    'يرجى اختيار نوع الدخول  ',
+                    style: TextStyle(fontSize: 15.sp),
+                  ),
+                  SizedBox(height: 6.h),
+                  _buildButton(
+                    context,
+                    title: 'تسجيل ولي أمر',
+                    onPressed: () =>
+                        Navigator.pushNamed(context, 'Parent-Log-in'),
+                    icon: Icons.person_outline,
+                    color: Colors.orange.shade700,
+                  ),
+                  SizedBox(height: 3.h),
+                  _buildButton(
+                    context,
+                    title: 'تسجيل الابن / الابنه',
+                    onPressed: () =>
+                        Navigator.pushNamed(context, 'Child-Log-in'),
+                    icon: Icons.child_care,
+                    color: Colors.teal.shade600,
+                  ),
+                  const Spacer(),
+                  _buildButton(
+                    context,
+                    title: 'زر الطوارئ',
+                    onPressed: () => Navigator.pushNamed(context, 'Imergance'),
+                    icon: Icons.warning_amber_rounded,
+                    color: Colors.red.shade700,
+                  ),
+                  SizedBox(height: 4.h),
+                ],
+              ),
+            ),
+          ),
+        ],
+      ),
+    );
+  }
+
+  Widget _buildButton(BuildContext context,
+      {required String title,
+      required VoidCallback onPressed,
+      required IconData icon,
+      required Color color}) {
+    return SizedBox(
+      width: double.infinity,
+      height: 7.5.h,
+      child: ElevatedButton.icon(
+        style: ElevatedButton.styleFrom(
+          backgroundColor: color,
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(18),
+          ),
+          elevation: 5,
+        ),
+        onPressed: onPressed,
+        icon: Icon(icon, color: Colors.white, size: 22.sp),
+        label: Text(
+          title,
+          style: TextStyle(
+            fontSize: 18.sp,
+            fontWeight: FontWeight.w600,
+            color: Colors.white,
           ),
         ),
       ),

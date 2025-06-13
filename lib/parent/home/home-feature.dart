@@ -4,6 +4,7 @@ import 'package:autisticchildren/parent/home/addNewChild.dart';
 import 'package:autisticchildren/parent/home/articelsPagescreen.dart';
 import 'package:autisticchildren/parent/home/doctors_view.dart';
 import 'package:autisticchildren/parent/home/imergance.dart';
+import 'package:autisticchildren/parent/home/notifications.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
@@ -82,6 +83,16 @@ class _HomeFeatureState extends State<HomeFeature> {
             ),
           ],
         ),
+        actions: [
+          IconButton(
+            onPressed: () {
+              Navigator.push(context,
+                  MaterialPageRoute(builder: (context) => NotificationsPage()));
+            },
+            icon: Icon(Icons.notifications),
+            color: Colors.red,
+          )
+        ],
       ),
       drawer: Drawer(
         child: Column(

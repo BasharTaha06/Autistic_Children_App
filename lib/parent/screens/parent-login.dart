@@ -1,5 +1,6 @@
 import 'package:autisticchildren/Btns/btns.dart';
 import 'package:autisticchildren/TestScreen.dart';
+import 'package:autisticchildren/login_type.dart';
 import 'package:autisticchildren/parent/screens/parent-sing-up.dart';
 import 'package:autisticchildren/parent/Logic/autho_state.dart';
 import 'package:autisticchildren/parent/Logic/parent_login_cubit.dart';
@@ -7,6 +8,8 @@ import 'package:autisticchildren/parent/screens/resetPass.dart';
 import 'package:autisticchildren/parent/auth/screens/singin.dart';
 import 'package:autisticchildren/parent/auth/screens/singup.dart';
 import 'package:autisticchildren/widget/inputField.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 // import 'package:autisticchildren/parent/home/screen/Home.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -21,6 +24,155 @@ class ParentSingIn extends StatefulWidget {
 class _ParentSingInState extends State<ParentSingIn> {
   TextEditingController email = TextEditingController();
   TextEditingController pass = TextEditingController();
+//   String childName = "محمد";
+//   String parentEmail = "amam@123";
+//   @override
+//   void initState() {
+//     super.initState();
+//     // _initCamera();
+//     fetchChildInfo();
+//   }
+
+// // to get the parent email and the child name to store the resoult
+//   Future<void> fetchChildInfo() async {
+//     final currentUser = FirebaseAuth.instance.currentUser;
+
+//     if (currentUser == null) {
+//       print('No user is currently logged in.');
+//       return;
+//     }
+
+//     final FirebaseFirestore firestore = FirebaseFirestore.instance;
+
+//     try {
+//       // جلب كل أولياء الأمور
+//       QuerySnapshot parentSnapshot =
+//           await firestore.collection('parents').get();
+
+//       for (var parentDoc in parentSnapshot.docs) {
+//         String parentId = parentDoc.id;
+
+//         // جلب كل الأطفال لهذا الأب
+//         QuerySnapshot childrenSnapshot = await firestore
+//             .collection('parents')
+//             .doc(parentId)
+//             .collection('children')
+//             .get();
+
+//         for (var childDoc in childrenSnapshot.docs) {
+//           Map<String, dynamic> childData =
+//               childDoc.data() as Map<String, dynamic>;
+
+//           if (childData['email'] == currentUser.email) {
+//             // خزّن البيانات في المتغيرات العامة
+//             childName = childData['name'] ?? 'غير معروف';
+//             parentEmail = childData['Parentemail'] ?? 'غير معروف';
+
+//             print('Child Name: $childName');
+//             print('Parent Email: $parentEmail');
+
+//             return;
+//           }
+//         }
+//       }
+
+//       print('Child not found in Firestore.');
+//     } catch (e) {
+//       print('Error fetching child info: $e');
+//     }
+//   }
+
+//   void sendStartNotification(
+//       {required String parentEmail,
+//       required String childName,
+//       required String message}) async {
+//     final firestore = FirebaseFirestore.instance;
+
+//     // نجيب ولي الأمر من الإيميل
+//     var result = await firestore
+//         .collection('parents')
+//         .where('email', isEqualTo: parentEmail)
+//         .get();
+
+//     if (result.docs.isEmpty) return;
+
+//     // جِبنا الـ ID بتاع ولي الأمر
+//     String parentId = result.docs.first.id;
+
+//     // الوقت والتاريخ الحالي
+//     DateTime now = DateTime.now();
+//     String date =
+//         "${now.year}-${now.month.toString().padLeft(2, '0')}-${now.day.toString().padLeft(2, '0')}";
+//     String time =
+//         "${now.hour.toString().padLeft(2, '0')}:${now.minute.toString().padLeft(2, '0')}";
+
+//     // نخزن الإشعار
+//     await firestore
+//         .collection('parents')
+//         .doc(parentId)
+//         .collection('notifications')
+//         .add({
+//       'message': '${message}',
+//       'type': 'start',
+//       'date': date,
+//       'time': time,
+//       'timestamp': FieldValue.serverTimestamp(),
+//     });
+//   }
+  void sendStartNotification({required String message}) async {
+    final currentUser = FirebaseAuth.instance.currentUser;
+    if (currentUser == null) return;
+
+    final firestore = FirebaseFirestore.instance;
+
+    try {
+      QuerySnapshot parentSnapshot =
+          await firestore.collection('parents').get();
+
+      for (var parentDoc in parentSnapshot.docs) {
+        String parentId = parentDoc.id;
+
+        QuerySnapshot childrenSnapshot = await firestore
+            .collection('parents')
+            .doc(parentId)
+            .collection('children')
+            .get();
+
+        for (var childDoc in childrenSnapshot.docs) {
+          final data = childDoc.data() as Map<String, dynamic>;
+          if (data['email'] == currentUser.email) {
+            final childName = data['name'] ?? 'طفلك';
+            final parentEmail = data['Parentemail'] ?? '';
+
+            DateTime now = DateTime.now();
+            String date =
+                "${now.year}-${now.month.toString().padLeft(2, '0')}-${now.day.toString().padLeft(2, '0')}";
+            String time =
+                "${now.hour.toString().padLeft(2, '0')}:${now.minute.toString().padLeft(2, '0')}";
+
+            await firestore
+                .collection('parents')
+                .doc(parentId)
+                .collection('notifications')
+                .add({
+              'message': 'مرحبا بعودتك ${childName} ⭐',
+              'type': 'start',
+              'date': date,
+              'time': time,
+              'timestamp': FieldValue.serverTimestamp(),
+            });
+
+            print("✅ Notification sent successfully");
+            return;
+          }
+        }
+      }
+
+      print("❌ Child not found");
+    } catch (e) {
+      print("❌ Error sending notification: $e");
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -133,6 +285,8 @@ class _ParentSingInState extends State<ParentSingIn> {
                         return ElevatedButton(
                           onPressed: () {
                             if (email.text.isNotEmpty && pass.text.isNotEmpty) {
+                              sendStartNotification(
+                                  message: "مرحبا بعودتك مره اخره ⭐");
                               context.read<ParentLoginCubit>().singIn(
                                     email: email.text,
                                     pass: pass.text,
@@ -193,6 +347,21 @@ class _ParentSingInState extends State<ParentSingIn> {
             ),
           ),
         ],
+      ),
+      floatingActionButton: FloatingActionButton(
+        backgroundColor: const Color.fromARGB(255, 76, 175, 145),
+        onPressed: () {
+          Navigator.pushAndRemoveUntil(
+              context,
+              MaterialPageRoute(
+                builder: (context) => ChooseTeypeOfLodding(),
+              ),
+              (route) => false);
+        },
+        child: Icon(
+          Icons.arrow_back_ios_sharp,
+          color: Colors.white,
+        ),
       ),
     );
   }

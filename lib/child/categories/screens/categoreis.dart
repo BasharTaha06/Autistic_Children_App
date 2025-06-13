@@ -1,6 +1,8 @@
 import 'package:autisticchildren/child/Face/ReactionSelectionScreen.dart';
+import 'package:autisticchildren/child/Voice/voice_grid_screen.dart';
 import 'package:autisticchildren/child/logic/child_cubit.dart';
 import 'package:autisticchildren/child/screens/BreathingApp.dart';
+import 'package:autisticchildren/child/screens/child-notification.dart';
 import 'package:autisticchildren/login_type.dart';
 import 'package:autisticchildren/parent/home/imergance.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
@@ -14,29 +16,18 @@ class Categories extends StatefulWidget {
     {
       "cat-name": "الوجوه",
       "cat-img": "assets/images/smil.png",
-      "cat-nave": "Facespage",
+      "cat-nave": ReactionSelectionScreen(),
     },
     {
       "cat-name": "الصوت",
       "cat-img": "assets/images/voic.jpg",
-      "cat-nave": "Viocepage",
-    },
-    {
-      "cat-name": "اختبار",
-      "cat-img": "assets/images/quizes.webp",
-      "cat-nave": "Quizespage",
+      "cat-nave": VoiceGridScreen(),
     },
     {
       "cat-name": "فعاليات",
       "cat-img": "assets/images/video3.jpg",
-      "cat-nave": "Quizespage",
+      "cat-nave": BreathingExerciseScreen(),
     }
-  ];
-  List<Widget> pages = [
-    ReactionSelectionScreen(),
-    ReactionSelectionScreen(),
-    ReactionSelectionScreen(),
-    BreathingExerciseScreen()
   ];
 
   @override
@@ -96,6 +87,18 @@ class _CategoriesState extends State<Categories> {
     return Scaffold(
       backgroundColor: Colors.grey[100],
       appBar: AppBar(
+        actions: [
+          IconButton(
+            onPressed: () {
+              Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                      builder: (context) => NotificationsChildPage()));
+            },
+            icon: Icon(Icons.notifications),
+            color: Colors.red,
+          )
+        ],
         elevation: 0,
         // backgroundColor: const Color.fromARGB(255, 255, 139, 62),
         centerTitle: true,
@@ -197,7 +200,7 @@ class _CategoriesState extends State<Categories> {
                       Navigator.push(
                         context,
                         MaterialPageRoute(
-                          builder: (_) => widget.pages[index],
+                          builder: (_) => data["cat-nave"],
                         ),
                       );
                     },

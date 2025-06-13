@@ -160,6 +160,16 @@ class _ResetParentPasswordState extends State<ResetParentPassword> {
           ),
         ),
       ),
+      floatingActionButton: FloatingActionButton(
+        backgroundColor: const Color.fromARGB(255, 76, 175, 145),
+        onPressed: () {
+          Navigator.pop(context);
+        },
+        child: Icon(
+          Icons.arrow_back_ios_sharp,
+          color: Colors.white,
+        ),
+      ),
     );
   }
 }

@@ -3,6 +3,7 @@ import 'package:autisticchildren/child/logic/child_state.dart';
 import 'package:autisticchildren/parent/Logic/autho_state.dart';
 import 'package:autisticchildren/login_type.dart';
 import 'package:autisticchildren/parent/home/imergance.dart';
+import 'package:autisticchildren/parent/home/notifications.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:firebase_auth/firebase_auth.dart';
@@ -30,6 +31,16 @@ class _ChildrenScreenState extends State<ChildrenScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        actions: [
+          IconButton(
+            onPressed: () {
+              Navigator.push(context,
+                  MaterialPageRoute(builder: (context) => NotificationsPage()));
+            },
+            icon: Icon(Icons.notifications),
+            color: Colors.red,
+          )
+        ],
         title: Text("أطفالك"),
         centerTitle: true,
       ),

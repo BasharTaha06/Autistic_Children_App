@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:lottie/lottie.dart';
 import 'package:sizer/sizer.dart';
 
 class DoctorDetailsPage extends StatefulWidget {
@@ -30,7 +31,8 @@ class _DoctorDetailsPageState extends State<DoctorDetailsPage> {
       child: Scaffold(
         appBar: AppBar(
           title: const Text('تفاصيل الدكتور'),
-          backgroundColor: Colors.teal,
+          backgroundColor: Color.fromARGB(255, 252, 77, 77),
+          iconTheme: IconThemeData(color: Colors.white),
           titleTextStyle: TextStyle(color: Colors.white, fontSize: 20.sp),
           centerTitle: true,
         ),
@@ -62,7 +64,8 @@ class _DoctorDetailsPageState extends State<DoctorDetailsPage> {
                         children: [
                           Row(
                             children: [
-                              const Icon(Icons.person, color: Colors.teal),
+                              const Icon(Icons.person,
+                                  color: Color.fromARGB(255, 252, 77, 77)),
                               const SizedBox(width: 8),
                               Text(
                                 widget.name,
@@ -132,7 +135,7 @@ class _DoctorDetailsPageState extends State<DoctorDetailsPage> {
                     style: TextStyle(color: Colors.white),
                   ),
                   style: ElevatedButton.styleFrom(
-                    backgroundColor: Colors.teal,
+                    backgroundColor: Color.fromARGB(255, 252, 77, 77),
                     padding: const EdgeInsets.symmetric(vertical: 16),
                   ),
                 ),
@@ -193,10 +196,18 @@ class _DoctorDetailsPageState extends State<DoctorDetailsPage> {
           title: const Text("🎉 تم الحجز بنجاح"),
           content: const Text("سيتم التواصل معك قريبًا لتأكيد الموعد."),
           actions: [
+            Lottie.asset(
+              'assets/animations/done.json',
+              height: 150,
+              repeat: true,
+            ),
             TextButton(
-              onPressed: () => Navigator.pop(context),
+              onPressed: () {
+                Navigator.pop(context);
+                Navigator.pop(context);
+              },
               child: const Text("حسنًا"),
-            )
+            ),
           ],
         ),
       );

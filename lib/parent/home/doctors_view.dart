@@ -220,7 +220,10 @@ Widget doctorCard(String imageUrl, String name, String position, String reviews,
             children: [
               Row(
                 children: [
-                  Icon(Icons.calendar_month, color: Color(0xff8696BB)),
+                  Icon(
+                    Icons.calendar_month,
+                    color: Color.fromARGB(255, 253, 161, 138),
+                  ),
                   SizedBox(width: 5),
                   Text(reviews,
                       style: TextStyle(fontSize: 12, color: Color(0xff8696BB))),
@@ -228,7 +231,10 @@ Widget doctorCard(String imageUrl, String name, String position, String reviews,
               ),
               Row(
                 children: [
-                  Icon(Icons.history, color: Color(0xff8696BB)),
+                  Icon(
+                    Icons.history,
+                    color: Color.fromARGB(255, 253, 161, 138),
+                  ),
                   SizedBox(width: 5),
                   Text(time,
                       style: TextStyle(fontSize: 12, color: Color(0xff8696BB))),
@@ -242,8 +248,8 @@ Widget doctorCard(String imageUrl, String name, String position, String reviews,
             height: 5.h,
             child: ElevatedButton(
               style: ElevatedButton.styleFrom(
-                backgroundColor: Color.fromARGB(248, 150, 245, 213),
-                foregroundColor: Color.fromARGB(255, 72, 254, 224),
+                backgroundColor: Color.fromARGB(255, 252, 77, 77),
+                foregroundColor: Color.fromARGB(255, 253, 161, 138),
               ),
               onPressed: () {
                 Navigator.push(
