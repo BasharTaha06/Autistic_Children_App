@@ -121,112 +121,121 @@ class _BreathingExerciseScreenState extends State<BreathingExerciseScreen>
         backgroundColor: Colors.blueAccent,
         elevation: 0, // نشيل الظل بتاع الـ app bar عشان يبقى شكله أنعم
       ),
-      body: Center(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: <Widget>[
-            Text(
-              _instructionText,
-              textAlign: TextAlign.center,
-              style: const TextStyle(
-                fontSize: 38,
-                fontWeight: FontWeight.bold,
-                color: Colors.blueGrey,
-              ),
-            ),
-            const SizedBox(height: 30), // مسافة أقل
-            Text(
-              'الدورة: $_breathingCycles / $_maxCycles',
-              style: const TextStyle(fontSize: 24, color: Colors.grey),
-            ),
-            const SizedBox(height: 50),
-            GestureDetector(
-              onTap: _toggleBreathing, // بتضغط على البالونة للبدء/الإيقاف
-              child: Transform.scale(
-                scale: _scaleAnimation
-                    .value, // بنستخدم قيمة الـ animation للـ scale
-                child: Container(
-                  width:
-                      250, // حجم ثابت للكونتينر الأساسي عشان الـ scale يشتغل عليه
-                  height: 250,
-                  decoration: BoxDecoration(
-                    gradient: LinearGradient(
-                      begin: Alignment.topLeft,
-                      end: Alignment.bottomRight,
-                      colors: _isBreathingIn
-                          ? [
-                              Colors.lightBlueAccent.shade100,
-                              Colors.blueAccent.shade400,
-                            ]
-                          : [Colors.lightGreen.shade100, Colors.green.shade400],
-                    ),
-                    shape: BoxShape.circle,
-                    boxShadow: [
-                      BoxShadow(
-                        color: Colors.black.withOpacity(0.3),
-                        spreadRadius: 6,
-                        blurRadius: 15, // نعومة أكبر للظل
-                        offset: const Offset(
-                          0,
-                          8,
-                        ), // إزاحة أكبر عشان البلونة تبان طايرة
-                      ),
-                    ],
-                    border: Border.all(
-                      color: Colors.white.withOpacity(0.8), // إطار أبيض لامع
-                      width: 4,
-                    ),
+      body: Container(
+        child: ListView(children: [
+          Center(
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: <Widget>[
+                Text(
+                  _instructionText,
+                  textAlign: TextAlign.center,
+                  style: const TextStyle(
+                    fontSize: 38,
+                    fontWeight: FontWeight.bold,
+                    color: Colors.blueGrey,
                   ),
-                  child: Center(
-                    child: _isPaused && _breathingCycles < _maxCycles
-                        ? const Icon(
-                            Icons.play_arrow,
-                            size: 80,
-                            color: Colors.white70,
-                          ) // أيقونة بلاي لما تكون واقفة
-                        : _breathingCycles >= _maxCycles
+                ),
+                const SizedBox(height: 30), // مسافة أقل
+                Text(
+                  'الدورة: $_breathingCycles / $_maxCycles',
+                  style: const TextStyle(fontSize: 24, color: Colors.grey),
+                ),
+                const SizedBox(height: 50),
+                GestureDetector(
+                  onTap: _toggleBreathing, // بتضغط على البالونة للبدء/الإيقاف
+                  child: Transform.scale(
+                    scale: _scaleAnimation
+                        .value, // بنستخدم قيمة الـ animation للـ scale
+                    child: Container(
+                      width:
+                          250, // حجم ثابت للكونتينر الأساسي عشان الـ scale يشتغل عليه
+                      height: 250,
+                      decoration: BoxDecoration(
+                        gradient: LinearGradient(
+                          begin: Alignment.topLeft,
+                          end: Alignment.bottomRight,
+                          colors: _isBreathingIn
+                              ? [
+                                  Colors.lightBlueAccent.shade100,
+                                  Colors.blueAccent.shade400,
+                                ]
+                              : [
+                                  Colors.lightGreen.shade100,
+                                  Colors.green.shade400
+                                ],
+                        ),
+                        shape: BoxShape.circle,
+                        boxShadow: [
+                          BoxShadow(
+                            color: Colors.black.withOpacity(0.3),
+                            spreadRadius: 6,
+                            blurRadius: 15, // نعومة أكبر للظل
+                            offset: const Offset(
+                              0,
+                              8,
+                            ), // إزاحة أكبر عشان البلونة تبان طايرة
+                          ),
+                        ],
+                        border: Border.all(
+                          color:
+                              Colors.white.withOpacity(0.8), // إطار أبيض لامع
+                          width: 4,
+                        ),
+                      ),
+                      child: Center(
+                        child: _isPaused && _breathingCycles < _maxCycles
                             ? const Icon(
-                                Icons.check_circle_outline,
+                                Icons.play_arrow,
                                 size: 80,
                                 color: Colors.white70,
-                              ) // أيقونة صح لما تخلص
-                            : const SizedBox.shrink(), // لو شغالة، مفيش أيقونة
+                              ) // أيقونة بلاي لما تكون واقفة
+                            : _breathingCycles >= _maxCycles
+                                ? const Icon(
+                                    Icons.check_circle_outline,
+                                    size: 80,
+                                    color: Colors.white70,
+                                  ) // أيقونة صح لما تخلص
+                                : const SizedBox
+                                    .shrink(), // لو شغالة، مفيش أيقونة
+                      ),
+                    ),
                   ),
                 ),
-              ),
+                const SizedBox(height: 50),
+                ElevatedButton(
+                  onPressed: _toggleBreathing,
+                  style: ElevatedButton.styleFrom(
+                    backgroundColor: _isPaused && _breathingCycles < _maxCycles
+                        ? Colors.blueAccent
+                        : _breathingCycles >= _maxCycles
+                            ? Colors.deepPurpleAccent // لون مختلف لما يخلص
+                            : Colors.redAccent,
+                    padding: const EdgeInsets.symmetric(
+                      horizontal: 50,
+                      vertical: 20,
+                    ),
+                    textStyle: const TextStyle(
+                      fontSize: 24,
+                      fontWeight: FontWeight.bold,
+                    ),
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(30),
+                    ),
+                    elevation: 5,
+                  ),
+                  child: Text(
+                    _isPaused && _breathingCycles < _maxCycles
+                        ? 'ابدأ التمرين'
+                        : _breathingCycles >= _maxCycles
+                            ? 'أعد البدء' // لما يخلص يبقى الزرار "أعد البدء"
+                            : 'إيقاف مؤقت',
+                  ),
+                ),
+              ],
             ),
-            const SizedBox(height: 50),
-            ElevatedButton(
-              onPressed: _toggleBreathing,
-              style: ElevatedButton.styleFrom(
-                backgroundColor: _isPaused && _breathingCycles < _maxCycles
-                    ? Colors.blueAccent
-                    : _breathingCycles >= _maxCycles
-                        ? Colors.deepPurpleAccent // لون مختلف لما يخلص
-                        : Colors.redAccent,
-                padding: const EdgeInsets.symmetric(
-                  horizontal: 50,
-                  vertical: 20,
-                ),
-                textStyle: const TextStyle(
-                  fontSize: 24,
-                  fontWeight: FontWeight.bold,
-                ),
-                shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(30),
-                ),
-                elevation: 5,
-              ),
-              child: Text(
-                _isPaused && _breathingCycles < _maxCycles
-                    ? 'ابدأ التمرين'
-                    : _breathingCycles >= _maxCycles
-                        ? 'أعد البدء' // لما يخلص يبقى الزرار "أعد البدء"
-                        : 'إيقاف مؤقت',
-              ),
-            ),
-          ],
-        ),
+          ),
+        ]),
       ),
     );
   }

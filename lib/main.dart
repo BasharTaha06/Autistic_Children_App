@@ -1,8 +1,10 @@
 import 'package:autisticchildren/Btns/btns.dart';
 import 'package:autisticchildren/TestScreen.dart';
+import 'package:autisticchildren/child/Voice/voice_grid_screen.dart';
 import 'package:autisticchildren/child/categories/screens/categoreis.dart';
 import 'package:autisticchildren/child/logic/child_cubit.dart';
 import 'package:autisticchildren/parent/home/Desplay_doctor_detaild.dart';
+import 'package:autisticchildren/parent/home/imergance.dart';
 import 'package:autisticchildren/parent/screens/resetPass.dart';
 import 'package:autisticchildren/child/screens/child_sing_in.dart';
 import 'package:autisticchildren/login_type.dart';
@@ -44,12 +46,13 @@ class MyApp extends StatelessWidget {
     return Sizer(
       builder: (context, orientation, deviceType) {
         return MaterialApp(
-          // home: Categories(),
+          // home: VoiceGridScreen(),
           home: SplachtPage(),
           debugShowCheckedModeBanner: false,
           routes: {
             "Parent-Log-in": (context) => ParentSingIn(),
             "Child-Log-in": (context) => ChildSignIn(),
+            "Imergance": (context) => ImerganceDesplay(),
           },
         );
       },
