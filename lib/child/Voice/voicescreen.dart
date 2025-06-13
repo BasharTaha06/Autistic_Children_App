@@ -3,6 +3,7 @@ import 'package:autisticchildren/child/Voice/VoiceItem.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:lottie/lottie.dart';
 import 'package:speech_to_text/speech_to_text.dart' as stt;
 
 class VoiceScreen extends StatefulWidget {
@@ -166,7 +167,8 @@ class _VoiceScreenState extends State<VoiceScreen> {
     showDialog(
       context: context,
       builder: (context) => AlertDialog(
-        title: const Text('نتيجة المقارنة'),
+        title: const Align(
+            alignment: Alignment.centerRight, child: Text('نتيجة المقارنة')),
         content: Column(
           mainAxisSize: MainAxisSize.min,
           children: [
@@ -180,9 +182,18 @@ class _VoiceScreenState extends State<VoiceScreen> {
               style: TextStyle(
                 fontSize: 20,
                 fontWeight: FontWeight.bold,
-                color: score >= 70 ? Colors.green : Colors.orange,
+                color: score >= 90 ? Colors.green : Colors.orange,
               ),
             ),
+            if (score >= 90)
+              Lottie.asset(
+                'assets/animations/tasqef.json',
+                height: 150,
+                repeat: true,
+              ),
+            if (score < 90)
+              Lottie.asset('assets/animations/sadAnimation.json',
+                  height: 150, repeat: true, animate: true),
           ],
         ),
         actions: [
@@ -405,7 +416,9 @@ class _VoiceScreenState extends State<VoiceScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: const Text("Voice Match")),
+      appBar: AppBar(
+          title: const Align(
+              alignment: Alignment.center, child: Text("تمرين التواصل"))),
       body: SingleChildScrollView(
         padding: const EdgeInsets.all(16),
         child: Column(

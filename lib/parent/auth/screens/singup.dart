@@ -34,7 +34,7 @@ class _SingupState extends State<Singup> {
               children: [
                 Image(
                   image: AssetImage(
-                    'assets/images/logen_bg.jpg',
+                    'assets/images/log.jpg',
                   ),
                   width: 100.w,
                   height: 100.h,

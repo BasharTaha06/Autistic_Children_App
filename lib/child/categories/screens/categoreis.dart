@@ -1,8 +1,10 @@
 import 'package:autisticchildren/child/Face/ReactionSelectionScreen.dart';
 import 'package:autisticchildren/child/Voice/voice_grid_screen.dart';
+import 'package:autisticchildren/child/fruits/FruitBasketGameApp.dart';
 import 'package:autisticchildren/child/logic/child_cubit.dart';
 import 'package:autisticchildren/child/screens/BreathingApp.dart';
 import 'package:autisticchildren/child/screens/child-notification.dart';
+import 'package:autisticchildren/child/shpaes/GeometricShapesGameApp.dart';
 import 'package:autisticchildren/login_type.dart';
 import 'package:autisticchildren/parent/home/imergance.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
@@ -14,19 +16,29 @@ import 'package:sizer/sizer.dart';
 class Categories extends StatefulWidget {
   final List<Map<String, dynamic>> data = [
     {
-      "cat-name": "الوجوه",
-      "cat-img": "assets/images/smil.png",
+      "cat-name": "لعبة تقليد المشاعر",
+      "cat-img": "assets/images/face.jpg",
       "cat-nave": ReactionSelectionScreen(),
     },
     {
-      "cat-name": "الصوت",
-      "cat-img": "assets/images/voic.jpg",
+      "cat-name": "تمرين التواصل",
+      "cat-img": "assets/images/voice.jpg",
       "cat-nave": VoiceGridScreen(),
     },
     {
-      "cat-name": "فعاليات",
-      "cat-img": "assets/images/video3.jpg",
+      "cat-name": "اختبار التنفيس العميق",
+      "cat-img": "assets/images/3.jpg",
       "cat-nave": BreathingExerciseScreen(),
+    },
+    {
+      "cat-name": "لعبة صائد الاشكال",
+      "cat-img": "assets/images/shapee.jpg",
+      "cat-nave": GeometricShapesColorsGameApp(),
+    },
+    {
+      "cat-name": "سلة الفواكة السحرية",
+      "cat-img": "assets/images/4.jpg",
+      "cat-nave": FruitBasketGameApp(),
     }
   ];
 
@@ -119,7 +131,7 @@ class _CategoriesState extends State<Categories> {
               width: 2.w,
             ),
             Text(
-              "أهلاً، ",
+              " ,أهلاً ",
               style: TextStyle(
                   fontSize: 15.sp,
                   color: Colors.red,
@@ -129,6 +141,7 @@ class _CategoriesState extends State<Categories> {
         ),
       ),
       drawer: Drawer(
+        backgroundColor: Color.fromRGBO(249, 249, 249, 1),
         child: Column(
           children: [
             SizedBox(height: 5.h),
@@ -137,17 +150,17 @@ class _CategoriesState extends State<Categories> {
               height: 20.h,
               width: 20.h,
               decoration: BoxDecoration(
-                color: Colors.white,
-                borderRadius: BorderRadius.circular(100),
-                boxShadow: [
+                color: Color.fromRGBO(249, 249, 249, 1),
+                //borderRadius: BorderRadius.circular(100),
+                /* boxShadow: [
                   BoxShadow(
                     color: Colors.black26,
                     blurRadius: 10,
                     offset: Offset(0, 4),
                   )
-                ],
+                ],*/
               ),
-              child: Image.asset('assets/images/APP-LOGO.png'),
+              child: Image.asset('assets/images/logo1.jpg'),
             ),
             SizedBox(height: 3.h),
             ListTile(
@@ -179,10 +192,13 @@ class _CategoriesState extends State<Categories> {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            Text(
-              "اختر فئة للتفاعل معها:",
-              style: TextStyle(fontSize: 18.sp, fontWeight: FontWeight.w600),
-            ),
+            Align(
+                alignment: Alignment.centerRight,
+                child: Text(
+                  ":اختر فئة للتفاعل معها",
+                  style:
+                      TextStyle(fontSize: 18.sp, fontWeight: FontWeight.w600),
+                )),
             SizedBox(height: 3.h),
             Expanded(
               child: GridView.builder(

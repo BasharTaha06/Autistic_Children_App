@@ -44,7 +44,10 @@ class VoiceGridScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: Text("Select Voice")),
+      appBar: AppBar(
+          title: Align(
+              alignment: Alignment.centerRight,
+              child: Text("اختار تمرين التواصل"))),
       body: GridView.builder(
         gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
           crossAxisCount: 2,

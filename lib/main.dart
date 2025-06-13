@@ -47,6 +47,7 @@ class MyApp extends StatelessWidget {
       builder: (context, orientation, deviceType) {
         return MaterialApp(
           // home: VoiceGridScreen(),
+
           home: SplachtPage(),
           debugShowCheckedModeBanner: false,
           routes: {

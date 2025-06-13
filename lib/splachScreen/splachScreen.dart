@@ -21,6 +21,7 @@ class SplachtPage extends StatelessWidget {
                   (route) => false)
             });
     return Scaffold(
+      backgroundColor: Color.fromRGBO(249, 249, 249, 1),
       body: Center(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
@@ -28,32 +29,32 @@ class SplachtPage extends StatelessWidget {
           children: [
             Container(
               alignment: Alignment.center,
-              height: 20.h,
-              width: 20.h,
+              height: 30.h,
+              width: 30.h,
               decoration: BoxDecoration(
-                color: Colors.white,
-                borderRadius: BorderRadius.circular(100),
-                boxShadow: [
+                color: Color.fromRGBO(249, 249, 249, 1),
+                //borderRadius: BorderRadius.circular(100),
+                /*  boxShadow: [
                   BoxShadow(
                     color: Colors.black26,
                     blurRadius: 10,
                     offset: Offset(0, 4),
                   )
-                ],
+                ],*/
               ),
               child: Image.asset(
-                'assets/images/APP-LOGO.png',
+                'assets/images/logo1.jpg',
                 //fit: BoxFit.contain,
               ),
             ),
-            SizedBox(height: 5.h),
+            /* SizedBox(height: 5.h),
             Text(
-              "S E E N A R",
+              "S A N N A R",
               style: TextStyle(
                   color: Colors.black,
                   fontSize: 25.sp,
                   fontWeight: FontWeight.bold),
-            ),
+            ),*/
           ],
         ),
       ),

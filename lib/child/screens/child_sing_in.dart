@@ -24,101 +24,81 @@ class _ChildSignInState extends State<ChildSignIn> {
       body: Stack(
         children: [
           Image.asset(
-            'assets/images/loginbg.webp', // خلفية مختلفة للطفل لو تحب
+            'assets/images/log.jpg',
             width: 100.w,
             height: 100.h,
             fit: BoxFit.cover,
           ),
-          SingleChildScrollView(
-            child: Padding(
-              padding: EdgeInsets.symmetric(horizontal: 5.w),
-              child: Column(
-                children: [
-                  SizedBox(height: 8.h),
-                  Container(
-                    alignment: Alignment.center,
-                    height: 20.h,
-                    width: 20.h,
-                    decoration: BoxDecoration(
-                      color: Colors.white,
-                      borderRadius: BorderRadius.circular(100),
-                      boxShadow: [
-                        BoxShadow(
-                          color: Colors.black26,
-                          blurRadius: 10,
-                          offset: Offset(0, 4),
-                        )
-                      ],
-                    ),
-                    child: Image.asset(
-                      'assets/images/APP-LOGO.png',
-                      fit: BoxFit.contain,
-                    ),
-                  ),
-                  SizedBox(height: 3.h),
-                  Text(
-                    "مرحبًا بك يا صغيري 👋",
-                    style: TextStyle(
-                      fontSize: 23.sp,
-                      fontWeight: FontWeight.bold,
-                    ),
-                  ),
-                  UserInput(
-                    fieldName: 'البريد الالكتروني',
-                    numbers: false,
-                    icon: Icons.email,
-                    data: email,
-                    password: false,
-                  ),
-                  UserInput(
-                    fieldName: 'كلمة السر',
-                    numbers: false,
-                    icon: Icons.lock,
-                    data: pass,
-                    password: true,
-                  ),
-                  Align(
-                    alignment: Alignment.centerLeft,
-                    child: GestureDetector(
-                      onTap: () {
-                        Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                              builder: (context) => ResetChildPassword()),
-                        );
-                      },
+          Center(
+            // هذا يخلي محتويات الشاشة تتوسط عموديًا وأفقيًا
+            child: SingleChildScrollView(
+              child: Padding(
+                padding: EdgeInsets.symmetric(horizontal: 5.w),
+                child: Column(
+                  mainAxisSize: MainAxisSize.min, // يتوسط حسب محتوياته
+                  children: [
+                    Align(
+                      alignment: Alignment.centerRight,
                       child: Text(
-                        "نسيت كلمة المرور؟",
+                        "مرحبًا بك يا صغيرِي 👋",
                         style: TextStyle(
-                          color: Colors.black,
-                          fontSize: 16.sp,
+                          fontSize: 18.sp,
                           fontWeight: FontWeight.bold,
-                          decoration: TextDecoration.underline,
                         ),
+                        textAlign: TextAlign.right,
                       ),
                     ),
-                  ),
-                  SizedBox(height: 2.h),
-                  BlocListener<ChildAuthCubit, ChildAuthState>(
-                    listener: (context, state) {
+                    UserInput(
+                        fieldName: 'البريد الالكتروني',
+                        numbers: false,
+                        icon: Icons.email,
+                        data: email,
+                        password: false),
+                    UserInput(
+                        fieldName: 'كلمة السر',
+                        numbers: false,
+                        icon: Icons.lock,
+                        data: pass,
+                        password: true),
+                    Align(
+                        alignment: Alignment.centerLeft,
+                        child: GestureDetector(
+                            onTap: () {
+                              Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                      builder: (context) =>
+                                          ResetChildPassword()));
+                            },
+                            child: Text(
+                              "نسيت كلمة المرور؟",
+                              style: TextStyle(
+                                color: Colors.black,
+                                fontSize: 16.sp,
+                                fontWeight: FontWeight.bold,
+                                decoration: TextDecoration.underline,
+                              ),
+                            ))),
+                    SizedBox(height: 2.h),
+                    BlocListener<ChildAuthCubit, ChildAuthState>(
+                        listener: (context, state) {
                       if (state is ChildSuccessState) {
                         Navigator.pushReplacement(
                           context,
                           MaterialPageRoute(builder: (context) => Btns()),
                         );
                       } else if (state is ChildAuthFailure) {
-                        ScaffoldMessenger.of(context).showSnackBar(
-                          SnackBar(
-                            content: Text(state.error),
-                            backgroundColor: Colors.red,
-                          ),
-                        );
+                        ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+                          content: Text(state.error),
+                          backgroundColor: Colors.red,
+                        ));
                       }
-                    },
-                    child: BlocBuilder<ChildAuthCubit, ChildAuthState>(
+                    }, child: BlocBuilder<ChildAuthCubit, ChildAuthState>(
                       builder: (context, state) {
                         if (state is ChildLoadingState) {
-                          return CircularProgressIndicator(color: Colors.white);
+                          return CircularProgressIndicator(
+                            color: Colors.white,
+                          );
                         }
                         return ElevatedButton(
                           onPressed: () {
@@ -156,24 +136,25 @@ class _ChildSignInState extends State<ChildSignIn> {
                           ),
                         );
                       },
-                    ),
-                  ),
-                  SizedBox(height: 3.h),
-                  TextButton(
-                      onPressed: () {
-                        Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                                builder: (context) => ChildSignUp()));
-                      },
-                      child: Text(
-                        'انشاء حساب للطفل ',
-                        style: TextStyle(
+                    )),
+                    SizedBox(height: 3.h),
+                    TextButton(
+                        onPressed: () {
+                          Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                  builder: (context) => ChildSignUp()));
+                        },
+                        child: Text(
+                          'انشاء حساب للطفل ',
+                          style: TextStyle(
                             color: Colors.black,
                             fontWeight: FontWeight.bold,
-                            fontSize: 16.sp),
-                      ))
-                ],
+                            fontSize: 16.sp,
+                          ),
+                        )),
+                  ],
+                ),
               ),
             ),
           ),
@@ -183,16 +164,12 @@ class _ChildSignInState extends State<ChildSignIn> {
         backgroundColor: const Color.fromARGB(255, 76, 175, 145),
         onPressed: () {
           Navigator.pushAndRemoveUntil(
-              context,
-              MaterialPageRoute(
-                builder: (context) => ChooseTeypeOfLodding(),
-              ),
-              (route) => false);
+            context,
+            MaterialPageRoute(builder: (context) => ChooseTeypeOfLodding()),
+            (route) => false,
+          );
         },
-        child: Icon(
-          Icons.arrow_back_ios_sharp,
-          color: Colors.white,
-        ),
+        child: Icon(Icons.arrow_back_ios_sharp, color: Colors.white),
       ),
     );
   }

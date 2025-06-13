@@ -73,7 +73,7 @@ class _BtnsState extends State<Btns> {
           children: pages,
         ),
         bottomNavigationBar: ConvexAppBar(
-          backgroundColor: Colors.red,
+          backgroundColor: Color.fromRGBO(102, 137, 115, 1),
           items: [
             TabItem(icon: Icons.home, title: 'Home'),
             TabItem(

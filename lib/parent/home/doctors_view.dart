@@ -135,14 +135,14 @@ class _DoctorsListPage extends State<DoctorsList> {
               'Open at 17.00',
               "شارع الثورة - القاهرة",
               context),
-          doctorCard(
+          /* doctorCard(
               'assets/images/d4.jpg',
               'د. محمد لاشين',
               'Dental Specialist',
               '4.8 (120 Reviews)',
               'Open at 17.00',
               "شارع الثورة - القاهرة",
-              context),
+              context),*/
           doctorCard(
               'assets/images/d3.webp',
               'د. أحمد مرسي',

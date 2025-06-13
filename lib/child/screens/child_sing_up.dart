@@ -27,7 +27,7 @@ class _ChildSignUpState extends State<ChildSignUp> {
       body: Stack(
         children: [
           Image.asset(
-            'assets/images/loginbg.webp',
+            'assets/images/log.jpg',
             width: 100.w,
             height: 100.h,
             fit: BoxFit.cover,
@@ -37,7 +37,7 @@ class _ChildSignUpState extends State<ChildSignUp> {
               padding: EdgeInsets.symmetric(horizontal: 5.w),
               child: Column(
                 children: [
-                  SizedBox(height: 8.h),
+                  /* SizedBox(height: 8.h),
                   Container(
                     alignment: Alignment.center,
                     height: 20.h,
@@ -57,8 +57,8 @@ class _ChildSignUpState extends State<ChildSignUp> {
                       'assets/images/APP-LOGO.png',
                       fit: BoxFit.contain,
                     ),
-                  ),
-                  SizedBox(height: 3.h),
+                  ),*/
+                  SizedBox(height: 200),
                   Text(
                     "إنشاء حساب طفل",
                     style: TextStyle(

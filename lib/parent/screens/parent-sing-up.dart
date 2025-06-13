@@ -27,7 +27,7 @@ class _ParentParentSingUp extends State<ParentSingUp> {
       body: Stack(
         children: [
           Image.asset(
-            'assets/images/parents-autho.jpg', // نفس الخلفية الخاصة باللوجين
+            'assets/images/log.jpg', // نفس الخلفية الخاصة باللوجين
             width: 100.w,
             height: 100.h,
             fit: BoxFit.fill,
@@ -37,9 +37,9 @@ class _ParentParentSingUp extends State<ParentSingUp> {
               padding: EdgeInsets.symmetric(horizontal: 5.w),
               child: Column(
                 children: [
-                  SizedBox(height: 8.h),
+                  SizedBox(height: 250),
                   // Logo
-                  Container(
+                  /* Container(
                     alignment: Alignment.center,
                     height: 20.h,
                     width: 20.h,
@@ -66,7 +66,7 @@ class _ParentParentSingUp extends State<ParentSingUp> {
                       fontSize: 25.sp,
                       fontWeight: FontWeight.bold,
                     ),
-                  ),
+                  ),*/
                   UserInput(
                     fieldName: 'اسم المستخدم',
                     numbers: false,

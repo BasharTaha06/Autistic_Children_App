@@ -55,7 +55,7 @@ class _HomeFeatureState extends State<HomeFeature> {
 //function  to open the whats up group
   void openWhatsAppGroup() async {
     final Uri url =
-        Uri.parse('https://chat.whatsapp.com/JPzKyu8xJAkKcHSvQ5vans');
+        Uri.parse('https://chat.whatsapp.com/KnbDs01KCHz0G3X2K5nmRu');
 
     if (await canLaunchUrl(url)) {
       await launchUrl(url, mode: LaunchMode.externalApplication);
@@ -71,15 +71,15 @@ class _HomeFeatureState extends State<HomeFeature> {
         title: Row(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            Text(
-              "Welcome, ",
-              style: TextStyle(fontSize: 15.sp, color: Colors.red),
-            ),
             SizedBox(
               width: 1.w,
             ),
             Text(
               "$name",
+            ),
+            Text(
+              " ,أهلاً ",
+              style: TextStyle(fontSize: 15.sp, color: Colors.red),
             ),
           ],
         ),
