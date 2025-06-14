@@ -452,11 +452,11 @@ class _HomeFeatureState extends State<HomeFeature> {
                             horizontal: 16, vertical: 12),
                         child: Row(
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                          children: const [
+                          children: [
                             Text(
                               "منتدى مغلق للاهل لتبادل الخبرات والتعبير عن تحدياتهم",
                               style: TextStyle(
-                                fontSize: 18,
+                                fontSize: 16.sp,
                                 fontWeight: FontWeight.bold,
                               ),
                             ),

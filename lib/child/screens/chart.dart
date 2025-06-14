@@ -1,6 +1,7 @@
 import 'package:autisticchildren/child/logic/child_cubit.dart';
 import 'package:autisticchildren/child/screens/child-notification.dart';
 import 'package:autisticchildren/login_type.dart';
+import 'package:autisticchildren/parent/home/ProfileCardPage.dart';
 import 'package:autisticchildren/parent/home/imergance.dart';
 import 'package:flutter/material.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
@@ -105,6 +106,7 @@ class _ChildProgressPageState extends State<ChildProgressPage>
         ],
       ),
       drawer: Drawer(
+        backgroundColor: Color.fromRGBO(249, 249, 249, 1),
         child: Column(
           children: [
             SizedBox(height: 5.h),
@@ -114,39 +116,82 @@ class _ChildProgressPageState extends State<ChildProgressPage>
               width: 20.h,
               decoration: BoxDecoration(
                 color: Colors.white,
-                borderRadius: BorderRadius.circular(100),
-                boxShadow: [
+                //    borderRadius: BorderRadius.circular(100),
+                /*  boxShadow: [
                   BoxShadow(
                     color: Colors.black26,
                     blurRadius: 10,
                     offset: Offset(0, 4),
                   )
-                ],
+                ],*/
               ),
-              child: Image.asset('assets/images/APP-LOGO.png'),
+              child: Image.asset(
+                'assets/images/logo1.jpg',
+                //fit: BoxFit.contain,
+              ),
             ),
             SizedBox(height: 3.h),
-            ListTile(
-              trailing: Icon(Icons.logout_rounded),
-              title: Text("تسجيل الخروج"),
-              onTap: () {
-                context.read<ChildAuthCubit>().signOut();
-                Navigator.pushReplacement(
-                  context,
-                  MaterialPageRoute(builder: (_) => ChooseTeypeOfLodding()),
-                );
-              },
+            Padding(
+              padding: const EdgeInsets.only(right: 20, left: 20),
+              child: InkWell(
+                onTap: () {
+                  context.read<ChildAuthCubit>().signOut();
+                  Navigator.pushReplacement(
+                    context,
+                    MaterialPageRoute(builder: (_) => ChooseTeypeOfLodding()),
+                  );
+                },
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    Text("تسجيل الخروج"),
+                    IconButton(
+                        onPressed: () {}, icon: Icon(Icons.logout_rounded))
+                  ],
+                ),
+              ),
             ),
             Divider(),
-            ListTile(
-              trailing: Icon(Icons.tips_and_updates),
-              title: Text("الطوارئ"),
-              onTap: () {
-                Navigator.push(context,
-                    MaterialPageRoute(builder: (_) => ImerganceDesplay()));
-              },
+            SizedBox(height: 3.h),
+            Padding(
+              padding: const EdgeInsets.only(right: 20, left: 20),
+              child: InkWell(
+                onTap: () {
+                  Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                          builder: (context) => ImerganceDesplay()));
+                },
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    Text("الطوارئ "),
+                    IconButton(
+                        onPressed: () {}, icon: Icon(Icons.tips_and_updates)),
+                  ],
+                ),
+              ),
             ),
             Divider(),
+            SizedBox(height: 3.h),
+            Padding(
+              padding: const EdgeInsets.only(right: 20, left: 20),
+              child: InkWell(
+                onTap: () {
+                  Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                          builder: (context) => ProfileCardPage()));
+                },
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    Text("الدعم الفنى "),
+                  ],
+                ),
+              ),
+            ),
+            Divider()
           ],
         ),
       ),

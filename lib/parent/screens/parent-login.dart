@@ -266,10 +266,10 @@ class _ParentSingInState extends State<ParentSingIn> {
                     BlocListener<ParentLoginCubit, ParentAthoState>(
                       listener: (context, state) {
                         if (state is ParentSuccessState) {
-                          Navigator.pushReplacement(
-                            context,
-                            MaterialPageRoute(builder: (context) => Btns()),
-                          );
+                          Navigator.pushAndRemoveUntil(
+                              context,
+                              MaterialPageRoute(builder: (context) => Btns()),
+                              (rout) => false);
                         } else if (state is AuthFailure) {
                           ScaffoldMessenger.of(context).showSnackBar(
                             SnackBar(

@@ -98,7 +98,7 @@ flutter:
 flutter_launcher_icons:
   android: "launcher_icon"
   ios: true
-  image_path: "assets/images/APP-LOGO.png"
+  image_path: "assets/images/logo1.jpg"
   min_sdk_android: 21
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/to/resolution-aware-images
@@ -112,8 +112,8 @@ flutter_launcher_icons:
   # list giving the asset and other descriptors for the font. For
   # example:
   fonts:
-   - family: Gulzar
-     fonts:
+    - family: Gulzar
+      fonts:
         - asset: assets/fonts/Gulzar-Regular.ttf
   #       - asset: fonts/Schyler-Italic.ttf
   #         style: italic

@@ -2,6 +2,7 @@ import 'package:autisticchildren/child/logic/child_cubit.dart';
 import 'package:autisticchildren/child/logic/child_state.dart';
 import 'package:autisticchildren/parent/Logic/autho_state.dart';
 import 'package:autisticchildren/login_type.dart';
+import 'package:autisticchildren/parent/home/ProfileCardPage.dart';
 import 'package:autisticchildren/parent/home/imergance.dart';
 import 'package:autisticchildren/parent/home/notifications.dart';
 import 'package:flutter/material.dart';
@@ -45,6 +46,7 @@ class _ChildrenScreenState extends State<ChildrenScreen> {
         centerTitle: true,
       ),
       drawer: Drawer(
+        backgroundColor: Color.fromRGBO(249, 249, 249, 1),
         child: Column(
           children: [
             SizedBox(height: 5.h),
@@ -54,17 +56,17 @@ class _ChildrenScreenState extends State<ChildrenScreen> {
               width: 20.h,
               decoration: BoxDecoration(
                 color: Colors.white,
-                borderRadius: BorderRadius.circular(100),
-                boxShadow: [
+                //    borderRadius: BorderRadius.circular(100),
+                /*  boxShadow: [
                   BoxShadow(
                     color: Colors.black26,
                     blurRadius: 10,
                     offset: Offset(0, 4),
                   )
-                ],
+                ],*/
               ),
               child: Image.asset(
-                'assets/images/APP-LOGO.png',
+                'assets/images/logo1.jpg',
                 //fit: BoxFit.contain,
               ),
             ),
@@ -105,7 +107,26 @@ class _ChildrenScreenState extends State<ChildrenScreen> {
                   children: [
                     Text("الطوارئ "),
                     IconButton(
-                        onPressed: () {}, icon: Icon(Icons.tips_and_updates))
+                        onPressed: () {}, icon: Icon(Icons.tips_and_updates)),
+                  ],
+                ),
+              ),
+            ),
+            Divider(),
+            SizedBox(height: 3.h),
+            Padding(
+              padding: const EdgeInsets.only(right: 20, left: 20),
+              child: InkWell(
+                onTap: () {
+                  Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                          builder: (context) => ProfileCardPage()));
+                },
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    Text("الدعم الفنى "),
                   ],
                 ),
               ),

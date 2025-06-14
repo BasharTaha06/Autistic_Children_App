@@ -12,7 +12,7 @@
     <uses-feature android:name="android.hardware.microphone"/>
 
     <application
-        android:label="SeeNar"
+        android:label="SaNNar"
         android:name="${applicationName}"
         android:icon="@mipmap/launcher_icon">
         
