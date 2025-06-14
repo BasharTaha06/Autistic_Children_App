@@ -6,6 +6,7 @@ import 'package:autisticchildren/child/screens/BreathingApp.dart';
 import 'package:autisticchildren/child/screens/child-notification.dart';
 import 'package:autisticchildren/child/shpaes/GeometricShapesGameApp.dart';
 import 'package:autisticchildren/login_type.dart';
+import 'package:autisticchildren/parent/home/ProfileCardPage.dart';
 import 'package:autisticchildren/parent/home/imergance.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
@@ -184,6 +185,25 @@ class _CategoriesState extends State<Categories> {
               },
             ),
             Divider(),
+            SizedBox(height: 3.h),
+            Padding(
+              padding: const EdgeInsets.only(right: 20, left: 20),
+              child: InkWell(
+                onTap: () {
+                  Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                          builder: (context) => ProfileCardPage()));
+                },
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    Text("الدعم الفنى "),
+                  ],
+                ),
+              ),
+            ),
+            Divider()
           ],
         ),
       ),

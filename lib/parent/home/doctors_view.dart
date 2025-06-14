@@ -1,6 +1,7 @@
 import 'package:autisticchildren/login_type.dart';
 import 'package:autisticchildren/parent/Logic/parent_login_cubit.dart';
 import 'package:autisticchildren/parent/home/Desplay_doctor_detaild.dart';
+import 'package:autisticchildren/parent/home/ProfileCardPage.dart';
 import 'package:autisticchildren/parent/home/imergance.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
@@ -61,6 +62,7 @@ class _DoctorsListPage extends State<DoctorsList> {
         ),
       ),
       drawer: Drawer(
+        backgroundColor: Color.fromRGBO(249, 249, 249, 1),
         child: Column(
           children: [
             SizedBox(height: 5.h),
@@ -69,16 +71,16 @@ class _DoctorsListPage extends State<DoctorsList> {
               height: 20.h,
               width: 20.h,
               decoration: BoxDecoration(
-                color: Colors.white,
-                borderRadius: BorderRadius.circular(100),
-                boxShadow: [
+                color: Color.fromRGBO(249, 249, 249, 1),
+                // borderRadius: BorderRadius.circular(100),
+                /*  boxShadow: [
                   BoxShadow(
                       color: Colors.black26,
                       blurRadius: 10,
                       offset: Offset(0, 4))
-                ],
+                ],*/
               ),
-              child: Image.asset('assets/images/APP-LOGO.png'),
+              child: Image.asset('assets/images/logo1.jpg'),
             ),
             SizedBox(height: 3.h),
             Padding(
@@ -109,6 +111,25 @@ class _DoctorsListPage extends State<DoctorsList> {
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [Text("الطوارئ"), Icon(Icons.tips_and_updates)],
+                ),
+              ),
+            ),
+            Divider(),
+            SizedBox(height: 3.h),
+            Padding(
+              padding: const EdgeInsets.only(right: 20, left: 20),
+              child: InkWell(
+                onTap: () {
+                  Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                          builder: (context) => ProfileCardPage()));
+                },
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    Text("الدعم الفنى "),
+                  ],
                 ),
               ),
             ),

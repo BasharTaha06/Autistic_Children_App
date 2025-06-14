@@ -1,5 +1,6 @@
 import 'package:autisticchildren/login_type.dart';
 import 'package:autisticchildren/parent/Logic/parent_login_cubit.dart';
+import 'package:autisticchildren/parent/home/ProfileCardPage.dart';
 import 'package:autisticchildren/parent/home/addNewChild.dart';
 import 'package:autisticchildren/parent/home/articelsPagescreen.dart';
 import 'package:autisticchildren/parent/home/doctors_view.dart';
@@ -64,6 +65,16 @@ class _HomeFeatureState extends State<HomeFeature> {
     }
   }
 
+  void opentleyGroup() async {
+    final Uri url = Uri.parse('https://t.me/+dlRY2a06WOQ1NTQ0');
+
+    if (await canLaunchUrl(url)) {
+      await launchUrl(url, mode: LaunchMode.externalApplication);
+    } else {
+      print("Could not launch WhatsApp group link");
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -95,6 +106,7 @@ class _HomeFeatureState extends State<HomeFeature> {
         ],
       ),
       drawer: Drawer(
+        backgroundColor: Color.fromRGBO(249, 249, 249, 1),
         child: Column(
           children: [
             SizedBox(height: 5.h),
@@ -104,17 +116,17 @@ class _HomeFeatureState extends State<HomeFeature> {
               width: 20.h,
               decoration: BoxDecoration(
                 color: Colors.white,
-                borderRadius: BorderRadius.circular(100),
-                boxShadow: [
+                //    borderRadius: BorderRadius.circular(100),
+                /*  boxShadow: [
                   BoxShadow(
                     color: Colors.black26,
                     blurRadius: 10,
                     offset: Offset(0, 4),
                   )
-                ],
+                ],*/
               ),
               child: Image.asset(
-                'assets/images/APP-LOGO.png',
+                'assets/images/logo1.jpg',
                 //fit: BoxFit.contain,
               ),
             ),
@@ -155,7 +167,26 @@ class _HomeFeatureState extends State<HomeFeature> {
                   children: [
                     Text("الطوارئ "),
                     IconButton(
-                        onPressed: () {}, icon: Icon(Icons.tips_and_updates))
+                        onPressed: () {}, icon: Icon(Icons.tips_and_updates)),
+                  ],
+                ),
+              ),
+            ),
+            Divider(),
+            SizedBox(height: 3.h),
+            Padding(
+              padding: const EdgeInsets.only(right: 20, left: 20),
+              child: InkWell(
+                onTap: () {
+                  Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                          builder: (context) => ProfileCardPage()));
+                },
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    Text("الدعم الفنى "),
                   ],
                 ),
               ),
@@ -194,7 +225,7 @@ class _HomeFeatureState extends State<HomeFeature> {
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: const [
                           Text(
-                            "مقالات توعيه",
+                            "مقالات توعوية",
                             style: TextStyle(
                               fontSize: 18,
                               fontWeight: FontWeight.bold,
@@ -253,7 +284,7 @@ class _HomeFeatureState extends State<HomeFeature> {
                               mainAxisAlignment: MainAxisAlignment.spaceBetween,
                               children: const [
                                 Text(
-                                  "انضم الينا",
+                                  "تواصل معنا",
                                   style: TextStyle(
                                     fontSize: 18,
                                     fontWeight: FontWeight.bold,
@@ -273,7 +304,7 @@ class _HomeFeatureState extends State<HomeFeature> {
                               bottom: Radius.circular(16),
                             ),
                             child: Image.asset(
-                              'assets/images/groupWhats.jpg', // غيّرها إلى رابط الصورة اللي تحب
+                              'assets/images/a.1.jpg', // غيّرها إلى رابط الصورة اللي تحب
                               width: double.infinity,
                               height: 10.h,
                               fit: BoxFit.fill,
@@ -371,7 +402,7 @@ class _HomeFeatureState extends State<HomeFeature> {
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: const [
                           Text(
-                            "الاطباء",
+                            "حجز جلسات استشارية",
                             style: TextStyle(
                               fontSize: 18,
                               fontWeight: FontWeight.bold,
@@ -398,6 +429,59 @@ class _HomeFeatureState extends State<HomeFeature> {
                       ),
                     ),
                   ],
+                ),
+              ),
+            ),
+            SizedBox(height: 2.h),
+            Expanded(
+              child: InkWell(
+                onTap: opentleyGroup,
+                borderRadius: BorderRadius.circular(16),
+                child: Card(
+                  elevation: 20,
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(16),
+                  ),
+                  shadowColor: Colors.black54,
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      // Title + Arrow Row
+                      Padding(
+                        padding: const EdgeInsets.symmetric(
+                            horizontal: 16, vertical: 12),
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: const [
+                            Text(
+                              "منتدى مغلق للاهل لتبادل الخبرات والتعبير عن تحدياتهم",
+                              style: TextStyle(
+                                fontSize: 18,
+                                fontWeight: FontWeight.bold,
+                              ),
+                            ),
+                            Icon(
+                              Icons.arrow_forward_ios,
+                              size: 18,
+                              color: Colors.grey,
+                            ),
+                          ],
+                        ),
+                      ),
+                      // Image Section
+                      ClipRRect(
+                        borderRadius: const BorderRadius.vertical(
+                          bottom: Radius.circular(16),
+                        ),
+                        child: Image.asset(
+                          'assets/images/m.3.jpg', // غيّرها إلى رابط الصورة اللي تحب
+                          width: double.infinity,
+                          height: 170,
+                          fit: BoxFit.fill,
+                        ),
+                      ),
+                    ],
+                  ),
                 ),
               ),
             ),

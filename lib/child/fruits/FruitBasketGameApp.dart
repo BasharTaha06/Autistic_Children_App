@@ -7,10 +7,7 @@ void main() {
 class FruitBasketGameApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      debugShowCheckedModeBanner: false,
-      home: FruitBasketGameScreen(),
-    );
+    return FruitBasketGameScreen();
   }
 }
 

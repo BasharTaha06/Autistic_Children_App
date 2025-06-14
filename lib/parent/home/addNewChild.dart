@@ -27,7 +27,7 @@ class _AddNewChildState extends State<AddNewChild> {
       body: Stack(
         children: [
           Image.asset(
-            'assets/images/loginbg.webp',
+            'assets/images/log.jpg',
             width: 100.w,
             height: 100.h,
             fit: BoxFit.cover,
@@ -38,7 +38,7 @@ class _AddNewChildState extends State<AddNewChild> {
               child: Column(
                 children: [
                   SizedBox(height: 8.h),
-                  Container(
+                  /*  Container(
                     alignment: Alignment.center,
                     height: 20.h,
                     width: 20.h,
@@ -57,8 +57,8 @@ class _AddNewChildState extends State<AddNewChild> {
                       'assets/images/APP-LOGO.png',
                       fit: BoxFit.contain,
                     ),
-                  ),
-                  SizedBox(height: 3.h),
+                  ),*/
+                  SizedBox(height: 150),
                   Text(
                     "إنشاء حساب طفل",
                     style: TextStyle(
