@@ -1,45 +1,43 @@
-# 🧠 Autism Assist App
+# 🧠 Autism Support App
 
-A Flutter mobile application designed to support children with autism by enhancing their communication and recognition skills. The app includes interactive voice-based exercises, facial expression recognition, and a dedicated parent dashboard to track the child's progress.
+A Flutter mobile application to assist autistic children through interactive games while also empowering parents with educational resources and doctor appointments. The app supports Arabic and English and is designed for offline use with a smooth and simple user interface.
 
 ---
 
 ## 📱 Features
 
-- 👨‍👩‍👧 Two interfaces: **Parent** and **Child**
-- 🖼️ Visual + audio instructions for children
-- 🗣️ Voice recording and similarity check
-- 📷 Face expression matching (via camera)
-- 📊 Parent can monitor child's improvement
-- 🌐 Arabic as primary language (with English support)
-- 📦 Works offline
+### 👧 Child Section
+- 🎮 Five engaging games:
+  1. Voice Repetition Game (listen and repeat)
+  2. Facial Expression Matching (using camera)
+  3. Shape and Color Matching
+  4. Image-to-Word Matching
+  5. Memory Game
+- 🖼️ Voice + image-based learning
+- 🗣️ Audio feedback & recognition
+
+### 👨‍👩‍👧 Parent Section
+- 📊 Monitor child’s progress
+- 📚 Read awareness articles about autism
+- 🩺 Reserve doctor appointments via app
 
 ---
 
-## 🖼️ Screenshots
+## 📸 Screenshots
 
-### 🔘 Home Screen
-![Home Screen](assets/screenshots/home.png)
+| 🧩 Game Menu | 🎙️ Voice Game |
+|-------------|----------------|
+| ![Game Menu](![games](https://github.com/user-attachments/assets/4a6b5ecd-dea3-4c00-8ebe-99c88d0f48a6)
+ | ![Voice Game](https://github.com/yourusername/assets/screenshots/voice_game.png) |
 
-### 👨‍👩‍👧 Choose Role (Parent / Child)
-![Role Selection](assets/screenshots/role_selection.png)
+| 😃 Face Game | 🧠 Memory Game |
+|-------------|----------------|
+| ![Face Game](https://github.com/yourusername/assets/screenshots/face_game.png) | ![Memory Game](https://github.com/yourusername/assets/screenshots/memory_game.png) |
 
-### 🧒 Child Voice Training Screen
-![Child Voice Screen](assets/screenshots/child_voice.png)
+| 📚 Awareness Articles | 🩺 Doctor Reservation |
+|-----------------------|----------------------|
+| ![Articles](https://github.com/yourusername/assets/screenshots/articles.png) | ![Doctor Reservation](https://github.com/yourusername/assets/screenshots/doctor_reservation.png) |
 
-### 🧑‍🏫 Voice Playback + Record Button
-![Voice and Record](assets/screenshots/voice_record.png)
-
-### 🧍 Face Expression Matching
-![Face Matching](assets/screenshots/face_matching.png)
-
-### 👨‍👩 Parent Dashboard
-![Parent Dashboard](assets/screenshots/parent_dashboard.png)
-
-### 📈 Progress Tracking Screen
-![Progress Screen](assets/screenshots/progress.png)
-
-> 📌 Note: Replace image paths with your actual image locations inside your `assets/screenshots/` folder.
 
 ---
 
@@ -49,13 +47,13 @@ A Flutter mobile application designed to support children with autism by enhanci
 
 - Flutter SDK
 - Dart
-- Emulator or physical device
-- Android Studio or VS Code
+- Android Studio / VS Code
+- A real device or emulator
 
 ### 🧪 Installation
 
 ```bash
-git clone https://github.com/yourusername/autism-assist.git
-cd autism-assist
+git clone https://github.com/yourusername/autism-support-app.git
+cd autism-support-app
 flutter pub get
 flutter run
