@@ -4,15 +4,16 @@ platform :ios, '15.5'
 use_frameworks!
 use_modular_headers!
 
-# Flutter Podfile setup
+# This line loads the Flutter setup
 flutter_application_path = File.expand_path('..', __dir__)
-load File.join(flutter_application_path, '.flutter-plugins-dependencies')
+eval(File.read(File.join(flutter_application_path, 'Flutter', 'podhelper.rb')), binding)
 
 target 'Runner' do
   use_frameworks!
   use_modular_headers!
 
-  eval(File.read(File.join(flutter_application_path, '.flutter-plugins-dependencies')), binding)
+  # This function installs all Flutter plugin dependencies automatically
+  flutter_install_all_ios_pods File.dirname(File.realpath(__FILE__))
 end
 
 # ✅ Fix for missing modules like audioplayers_darwin
