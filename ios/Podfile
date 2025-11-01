@@ -15,3 +15,10 @@ target 'Runner' do
   flutter_application_path = File.expand_path('..', __dir__)
   eval(File.read(File.join(flutter_application_path, '.flutter-plugins-dependencies')), binding)
 end
+
+# ✅ Fix for missing modules like audioplayers_darwin
+post_install do |installer|
+  installer.pods_project.targets.each do |target|
+    flutter_additional_ios_build_settings(target)
+  end
+end
