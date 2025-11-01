@@ -1,0 +1,17 @@
+# Uncomment this line to define a global platform for your project
+platform :ios, '15.5'
+
+use_frameworks!
+use_modular_headers!
+
+# Flutter Podfile setup
+flutter_application_path = '../'
+load File.join(flutter_application_path, '.flutter-plugins-dependencies')
+
+target 'Runner' do
+  use_frameworks!
+  use_modular_headers!
+
+  flutter_application_path = File.expand_path('..', __dir__)
+  eval(File.read(File.join(flutter_application_path, '.flutter-plugins-dependencies')), binding)
+end
